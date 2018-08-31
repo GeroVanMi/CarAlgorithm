@@ -1,4 +1,4 @@
-package sample;
+package caralgorithm;
 
 public class Controller {
 }
