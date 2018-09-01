@@ -11,8 +11,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("gameField.fxml"));
+        primaryStage.setResizable(false);
         primaryStage.setTitle("Phantomstau");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 900, 300));
         primaryStage.show();
     }
 
