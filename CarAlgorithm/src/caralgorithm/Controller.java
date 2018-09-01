@@ -41,7 +41,11 @@ public class Controller {
 
                 Duration.millis(tickSlider.getValue()),
                 ae -> {
-                    carsInMap.removeAll(carsOutOfMap);
+                    int leftCars = carsOutOfMap.size();
+                    for (int i = 0; i < leftCars; i++) {
+                        carsInMap.remove(carsOutOfMap.get(0));
+                        carsOutOfMap.remove(0);
+                    }
 
                     Random random = new Random();
                     if(!slots[0].hasCar()) {
@@ -94,12 +98,21 @@ public class Controller {
                                     break;
                                 }
                             }
+
+                        } catch (ArrayIndexOutOfBoundsException e) {
+                            // TODO: Implement visual representation for leaving car?
+                            System.out.println("Car is about to leave.");
+                        }
+                    }
+
+                    for(Car c:carsInMap) {
+                        try {
                             slots[c.getPos()].setHasCar(false);
                             c.setPos(c.getPos() + c.getVelocity());
                             slots[c.getPos()].setHasCar(true);
-                        } catch (ArrayIndexOutOfBoundsException aioobe) {
+                        }
+                        catch (ArrayIndexOutOfBoundsException e) {
                             carsOutOfMap.add(c);
-                            slots[c.getPos()].setHasCar(false);
                         }
                     }
                 }));
