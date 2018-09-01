@@ -42,4 +42,8 @@ public class Car {
     public void incVelocity() {
         this.velocity++;
     }
+
+    public void decVelocity() {
+        this.velocity--;
+    }
 }

@@ -4,10 +4,12 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Controller {
 
@@ -15,8 +17,11 @@ public class Controller {
     private HBox playground;
 
     @FXML
+    private Slider tickSlider, carSlider;
+
+    @FXML
     public void handleButtonStart(ActionEvent event) {
-        int length = 20;
+        int length = 40;
         Slot[] slots = new Slot[length];
         int lastPlayground = playground.getChildren().size();
         for(int i = 0; i < lastPlayground; i++) {
@@ -31,17 +36,22 @@ public class Controller {
 
         ArrayList<Car> carsInMap = new ArrayList<>();
         ArrayList<Car> carsOutOfMap = new ArrayList<>();
-        Car car = new Car(3, 3, 0, 0);
-        Car car1 = new Car(3, 3, 0, 2);
-        carsInMap.add(car);
-        carsInMap.add(car1);
-        slots[0].setHasCar(true);
 
         Timeline gameloop = new Timeline(new KeyFrame(
 
-                Duration.millis(1000),
+                Duration.millis(tickSlider.getValue()),
                 ae -> {
                     carsInMap.removeAll(carsOutOfMap);
+
+                    Random random = new Random();
+                    if(!slots[0].hasCar()) {
+                        if(random.nextInt(100) < 50) {
+                            Car c = new Car(3, 3, random.nextInt((int)carSlider.getValue()), 0);
+                            carsInMap.add(c);
+                            slots[0].setHasCar(true);
+                        }
+                    }
+
                     for (int i = 0; i < slots.length; i++) {
                         if(slots[i].hasCar()) {
 
@@ -73,6 +83,10 @@ public class Controller {
                         if(c.getVelocity() < c.getMaxVelocity()) {
                             c.incVelocity();
                         }
+                        if(random.nextInt(150) < c.getFlea()) {
+                            c.decVelocity();
+                        }
+
                         try {
                             for (int i = 0; i < c.getVelocity(); i++) {
                                 if (slots[c.getPos() + i + 1].hasCar()) {
@@ -91,9 +105,5 @@ public class Controller {
                 }));
         gameloop.setCycleCount(Timeline.INDEFINITE);
         gameloop.play();
-    }
-
-    public void render(Slot[] slots) {
-
     }
 }
