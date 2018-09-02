@@ -17,7 +17,7 @@ public class Controller {
     private HBox playground;
 
     @FXML
-    private Slider tickSlider, carSlider;
+    private Slider tickSlider, carSlider, fleaSlider;
 
     @FXML
     public void handleButtonStart(ActionEvent event) {
@@ -39,7 +39,7 @@ public class Controller {
 
         Timeline gameloop = new Timeline(new KeyFrame(
 
-                Duration.millis(tickSlider.getValue()),
+                Duration.millis(200),
                 ae -> {
                     int leftCars = carsOutOfMap.size();
                     for (int i = 0; i < leftCars; i++) {
@@ -49,8 +49,8 @@ public class Controller {
 
                     Random random = new Random();
                     if(!slots[0].hasCar()) {
-                        if(random.nextInt(100) < 50) {
-                            Car c = new Car(3, 3, random.nextInt((int)carSlider.getValue()), 0);
+                        if(random.nextInt(100) * -1 > carSlider.getValue() * -1) {
+                            Car c = new Car(3, 3, fleaSlider.getValue() * -1, 0);
                             carsInMap.add(c);
                             slots[0].setHasCar(true);
                         }
@@ -87,7 +87,7 @@ public class Controller {
                         if(c.getVelocity() < c.getMaxVelocity()) {
                             c.incVelocity();
                         }
-                        if(random.nextInt(150) < c.getFlea()) {
+                        if(random.nextInt(100) * -1 > c.getFlea()) {
                             c.decVelocity();
                         }
 
@@ -101,7 +101,7 @@ public class Controller {
 
                         } catch (ArrayIndexOutOfBoundsException e) {
                             // TODO: Implement visual representation for leaving car?
-                            System.out.println("Car is about to leave.");
+                            // System.out.println("Car is about to leave.");
                         }
                     }
 
