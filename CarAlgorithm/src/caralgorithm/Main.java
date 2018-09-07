@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("gameField.fxml"));
@@ -22,3 +23,5 @@ public class Main extends Application {
         launch(args);
     }
 }
+
+// In case of push error 403: add https://GeroVanMi@github.com/GeroVanMi/CarAlgorithm.git
