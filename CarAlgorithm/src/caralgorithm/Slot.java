@@ -6,9 +6,9 @@ public class Slot {
     private Label label;
     private boolean hasCar;
 
-    public Slot(boolean hasCar, int length, int pos) {
+    public Slot(boolean hasCar, double windowSize, int length, int pos) {
         label = new Label();
-        label.setPrefSize(1020 / length, 80);
+        label.setPrefSize(windowSize / length, 80);
         label.setLayoutX(pos * label.getWidth());
         label.setId("white");
         this.hasCar = hasCar;

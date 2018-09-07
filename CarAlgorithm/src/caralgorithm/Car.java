@@ -35,10 +35,6 @@ public class Car {
         this.pos = pos;
     }
 
-    public void setFlea(double flea) {
-        this.flea = flea;
-    }
-
     public void incVelocity() {
         this.velocity++;
     }

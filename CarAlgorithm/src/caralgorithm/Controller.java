@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -20,6 +21,9 @@ public class Controller {
     private Slider tickSlider, carSlider, fleaSlider;
 
     @FXML
+    private VBox window;
+
+    @FXML
     public void handleButtonStart(ActionEvent event) {
         int length = 40;
         Slot[] slots = new Slot[length];
@@ -29,7 +33,7 @@ public class Controller {
         }
 
         for(int i = 0; i < length; i++) {
-            Slot slot = new Slot(false, length, i);
+            Slot slot = new Slot(false, window.getWidth(), length, i);
             slots[i] = slot;
             playground.getChildren().add(slot.getLabel());
         }
@@ -39,7 +43,7 @@ public class Controller {
 
         Timeline gameloop = new Timeline(new KeyFrame(
 
-                Duration.millis(200),
+                Duration.millis(tickSlider.getValue() + 200),
                 ae -> {
                     int leftCars = carsOutOfMap.size();
                     for (int i = 0; i < leftCars; i++) {

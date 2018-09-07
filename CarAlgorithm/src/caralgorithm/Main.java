@@ -13,7 +13,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("gameField.fxml"));
         primaryStage.setResizable(false);
         primaryStage.setTitle("Phantomstau");
-        primaryStage.setScene(new Scene(root, 900, 300));
+        primaryStage.setScene(new Scene(root, 1280, 300));
         primaryStage.show();
     }
 
