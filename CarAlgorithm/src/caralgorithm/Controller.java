@@ -43,7 +43,7 @@ public class Controller {
 
         Timeline gameloop = new Timeline(new KeyFrame(
 
-                Duration.millis(tickSlider.getValue() + 200),
+                Duration.millis(1000 / tickSlider.getValue()),
                 ae -> {
                     int leftCars = carsOutOfMap.size();
                     for (int i = 0; i < leftCars; i++) {
@@ -53,8 +53,8 @@ public class Controller {
 
                     Random random = new Random();
                     if(!slots[0].hasCar()) {
-                        if(random.nextInt(100) * -1 > carSlider.getValue() * -1) {
-                            Car c = new Car(3, 3, fleaSlider.getValue() * -1, 0);
+                        if(random.nextInt(100) < carSlider.getValue()) {
+                            Car c = new Car(3, 3, fleaSlider.getValue(), 0);
                             carsInMap.add(c);
                             slots[0].setHasCar(true);
                         }
@@ -91,7 +91,7 @@ public class Controller {
                         if(c.getVelocity() < c.getMaxVelocity()) {
                             c.incVelocity();
                         }
-                        if(random.nextInt(100) * -1 > c.getFlea()) {
+                        if(random.nextInt(100) < c.getFlea()) {
                             c.decVelocity();
                         }
 
