@@ -1,0 +1,24 @@
+#white {
+    -fx-background-color: white;
+    -fx-border-color: black;
+}
+
+#red {
+    -fx-background-color: rgb(200, 50, 0);
+    -fx-border-color: black;
+}
+
+#orange {
+    -fx-background-color: rgb(210, 120, 0);
+    -fx-border-color: black;
+}
+
+#yellow {
+    -fx-background-color: rgb(220, 220, 0);
+    -fx-border-color: black;
+}
+
+#green {
+    -fx-background-color: rgb(100, 200, 0);
+    -fx-border-color: black;
+}
