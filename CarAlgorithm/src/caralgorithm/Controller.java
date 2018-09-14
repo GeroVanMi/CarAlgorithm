@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,14 +19,22 @@ public class Controller {
     private HBox playground;
 
     @FXML
-    private Slider tickSlider, carSlider, fleaSlider;
+    private Slider tickSlider, carSlider, fleaSlider, fieldsAmount;
 
     @FXML
     private VBox window;
 
     @FXML
+    private Button starterButton;
+
+    private Timeline gameLoop;
+
+    @FXML
     public void handleButtonStart(ActionEvent event) {
-        int length = 40;
+        starterButton.setOnAction(this::handleButtonStop);
+        starterButton.setText("Stop");
+
+        int length = (int)fieldsAmount.getValue();
         Slot[] slots = new Slot[length];
         int lastPlayground = playground.getChildren().size();
         for(int i = 0; i < lastPlayground; i++) {
@@ -41,7 +50,7 @@ public class Controller {
         ArrayList<Car> carsInMap = new ArrayList<>();
         ArrayList<Car> carsOutOfMap = new ArrayList<>();
 
-        Timeline gameloop = new Timeline(new KeyFrame(
+        gameLoop = new Timeline(new KeyFrame(
 
                 Duration.millis(1000 / tickSlider.getValue()),
                 ae -> {
@@ -54,7 +63,7 @@ public class Controller {
                     Random random = new Random();
                     if(!slots[0].hasCar()) {
                         if(random.nextInt(100) < carSlider.getValue()) {
-                            Car c = new Car(3, 3, fleaSlider.getValue(), 0);
+                            Car c = new Car(5, 6, fleaSlider.getValue(), 0);
                             carsInMap.add(c);
                             slots[0].setHasCar(true);
                         }
@@ -69,12 +78,19 @@ public class Controller {
                                     switch (c.getVelocity()) {
                                         case 0: id = "red";
                                         break;
-                                        case 1: id = "orange";
+                                        case 1: id = "darkOrange";
                                         break;
-                                        case 2: id = "yellow";
+                                        case 2: id = "orange";
                                         break;
-                                        case 3: id = "green";
+                                        case 3: id = "darkYellow";
                                         break;
+                                        case 4: id = "yellow";
+                                        break;
+                                        case 5: id = "green";
+                                        break;
+                                        case 6: id = "darkGreen";
+                                        break;
+
                                     }
                                     slots[i].getLabel().setId(id);
                                 }
@@ -120,7 +136,29 @@ public class Controller {
                         }
                     }
                 }));
-        gameloop.setCycleCount(Timeline.INDEFINITE);
-        gameloop.play();
+        gameLoop.setCycleCount(Timeline.INDEFINITE);
+        gameLoop.play();
+    }
+
+    @FXML
+    public void handleButtonStop(ActionEvent e) {
+        try {
+            gameLoop.pause();
+            starterButton.setOnAction(this::handleButtonRestart);
+            starterButton.setText("Restart");
+        } catch (NullPointerException npe) {
+
+        }
+    }
+
+    @FXML
+    public void handleButtonRestart(ActionEvent e) {
+        try {
+            gameLoop.play();
+            starterButton.setOnAction(this::handleButtonStop);
+            starterButton.setText("Stop");
+        } catch (NullPointerException npe) {
+
+        }
     }
 }
