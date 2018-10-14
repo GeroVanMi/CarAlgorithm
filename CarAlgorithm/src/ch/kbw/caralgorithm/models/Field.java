@@ -32,15 +32,15 @@ public class Field {
         label = new Label();
         label.setPrefSize(width, height);
         label.setId("white");
-        // TODO: Set color and size of label.
         occupationTime = 0;
     }
 
     /**
      * Die Methode setzt die Variable "hasCar" auf true.
      */
-    public void carArrives() {
+    public void carArrives(String color) {
         this.hasCar = true;
+        label.setId(color);
     }
 
     /**
@@ -48,6 +48,7 @@ public class Field {
      */
     public void carLeaves() {
         this.hasCar = false;
+        label.setId("white");
     }
 
     /**
@@ -65,17 +66,13 @@ public class Field {
     }
 
     /**
-     * Setzt die Farbe des Labels neu.
-     * @param color Die Farbe, die neu angezeigt wird.
-     */
-    public void setLabelColor(String color) {
-        this.label.setId(color);
-    }
-
-    /**
      * @return Gibt zurueck, ob sich ein Auto auf dem Feld befindet.
      */
     public boolean hasCar() {
         return hasCar;
+    }
+
+    public Label getLabel() {
+        return label;
     }
 }

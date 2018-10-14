@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Lane {
-    private Field[] fields;
+    private ArrayList<Field> fields;
     private ArrayList<Car> carsInLane;
-    private int globalSpawnChance, globalFleaChance;
+    private double globalSpawnChance, globalFleaChance;
 
-    public Lane(int amountOfFields, int globalSpawnChance, int globalFleaChance) {
+    public Lane(int amountOfFields, double globalSpawnChance, double globalFleaChance, double windowWidth) {
         this.globalSpawnChance = globalSpawnChance;
         this.globalFleaChance = globalFleaChance;
         this.carsInLane = new ArrayList<>();
-        this.fields = new Field[amountOfFields];
-        for(int i = 0; i < fields.length; i++) {
-            fields[i] = new Field(25, 25); // TODO: Implement automatic width and height.
+        this.fields = new ArrayList<>();
+        for(int i = 0; i < amountOfFields; i++) {
+            fields.add(new Field(windowWidth / amountOfFields, 50)); // TODO: Implement automatic width and height.
         }
     }
 
@@ -40,9 +40,10 @@ public class Lane {
      */
     private void spawnNewCar() {
         Random r = new Random();
-        if(!fields[0].hasCar() && r.nextInt(100) < globalSpawnChance) {
-            fields[0].carArrives();
-            carsInLane.add(new Car(5, 6));
+        if(!fields.get(0).hasCar() && r.nextInt(100) < globalSpawnChance) {
+            Car c = new Car(5, 6);
+            fields.get(0).carArrives(c.getColor());
+            carsInLane.add(c);
         }
     }
 
@@ -54,13 +55,13 @@ public class Lane {
         try {
             for (Car c : carsInLane) {
                 for (int i = c.getSpeed(); i > 0; i--) {
-                    if (fields[c.getPosition() + i + 1].hasCar()) {
+                    if (fields.get(c.getPosition() + i + 1).hasCar()) {
                         c.setSpeed(i);
                         c.adjustColor();
                     }
                 }
             }
-        } catch (ArrayIndexOutOfBoundsException ignored) {}
+        } catch (IndexOutOfBoundsException ignored) { }
     }
 
     /**
@@ -71,11 +72,11 @@ public class Lane {
         ArrayList<Car> carsLeavingLane = new ArrayList<>();
         for (Car c : carsInLane) {
             try {
-                fields[c.getPosition()].carLeaves();
+                fields.get(c.getPosition()).carLeaves();
                 c.move();
-                fields[c.getPosition()].carArrives();
-                fields[c.getPosition()].incrementOccupationTime();
-            } catch (ArrayIndexOutOfBoundsException ex) {
+                fields.get(c.getPosition()).carArrives(c.getColor());
+                fields.get(c.getPosition()).incrementOccupationTime();
+            } catch (IndexOutOfBoundsException ignored) {
                 carsLeavingLane.add(c);
             }
         }
@@ -93,5 +94,9 @@ public class Lane {
         this.checkForCollisions();
         this.moveCars();
         this.spawnNewCar();
+    }
+
+    public ArrayList<Field> getFields() {
+        return fields;
     }
 }
