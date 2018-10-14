@@ -8,6 +8,12 @@ public class Lane {
     private ArrayList<Car> carsInLane;
     private double globalSpawnChance, globalFleaChance;
 
+    /**
+     * @param amountOfFields
+     * @param globalSpawnChance
+     * @param globalFleaChance
+     * @param windowWidth
+     */
     public Lane(int amountOfFields, double globalSpawnChance, double globalFleaChance, double windowWidth) {
         this.globalSpawnChance = globalSpawnChance;
         this.globalFleaChance = globalFleaChance;
@@ -96,6 +102,9 @@ public class Lane {
         this.spawnNewCar();
     }
 
+    /**
+     * @return
+     */
     public ArrayList<Field> getFields() {
         return fields;
     }

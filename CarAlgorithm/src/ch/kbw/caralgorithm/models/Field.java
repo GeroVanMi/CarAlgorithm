@@ -72,6 +72,9 @@ public class Field {
         return hasCar;
     }
 
+    /**
+     * @return
+     */
     public Label getLabel() {
         return label;
     }

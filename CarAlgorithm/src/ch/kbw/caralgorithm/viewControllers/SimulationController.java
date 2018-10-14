@@ -12,6 +12,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
+/**
+ *
+ */
 public class SimulationController {
 
     private Algorithm algorithm;
@@ -26,6 +29,9 @@ public class SimulationController {
 
     private Timeline loop;
 
+    /**
+     * @param e
+     */
     @FXML
     public void handleButtonStart(ActionEvent e) {
         algorithm = new Algorithm(1, (int)amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth());
@@ -34,15 +40,23 @@ public class SimulationController {
         loop.play();
     }
 
+    /**
+     *
+     */
     public void createLoop() {
-        loop = new Timeline(new KeyFrame(Duration.millis(1000), event -> {
+        if(loop != null) {
+            loop.stop();
+        }
+        loop = new Timeline(new KeyFrame(Duration.millis(1000 / tickSlider.getValue()), event -> {
             algorithm.tick();
             loadPlayground();
-            System.out.println("Tick");
         }));
         loop.setCycleCount(Timeline.INDEFINITE);
     }
 
+    /**
+     *
+     */
     public void loadPlayground() {
         playground.getChildren().clear();
         for(Field f : algorithm.getLanes().get(0).getFields()) {
