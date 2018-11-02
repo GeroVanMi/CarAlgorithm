@@ -26,7 +26,7 @@
                         </MenuBar>
                     </children>
                 </VBox>
-                <Label alignment="CENTER" minWidth="-Infinity" prefHeight="80.0" prefWidth="800.0" text="Nagel-Schreckenberg-Modell Normal">
+                <Label alignment="CENTER" minWidth="-Infinity" prefHeight="80.0" prefWidth="800.0" text="Nagel-Schreckenberg-Modell History">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -36,7 +36,7 @@
                 </Label>
             </children>
         </HBox>
-      <Label fx:id="l" />
+        <Label fx:id="l" />
         <HBox fx:id="playground" alignment="CENTER" prefHeight="325.0" prefWidth="1280.0">
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
