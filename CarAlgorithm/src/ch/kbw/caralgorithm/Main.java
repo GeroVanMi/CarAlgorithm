@@ -1,4 +1,4 @@
-package caralgorithm;
+package ch.kbw.caralgorithm;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +11,8 @@ public class Main extends Application
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception
-    {
-        Parent root = FXMLLoader.load(getClass().getResource("gameField.fxml"));
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("views/view.fxml"));
         primaryStage.setResizable(false);
         primaryStage.setTitle("Phantomstau");
         primaryStage.setScene(new Scene(root, 1300, 950));
@@ -25,5 +24,3 @@ public class Main extends Application
         launch(args);
     }
 }
-
-// In case of push error 403: add https://GeroVanMi@github.com/GeroVanMi/CarAlgorithm.git
