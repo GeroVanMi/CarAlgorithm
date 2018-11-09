@@ -21,7 +21,7 @@ import java.io.IOException;
 /**
  *
  */
-public class SimulationController
+public class HomeController
 {
 
     private Algorithm algorithm;
