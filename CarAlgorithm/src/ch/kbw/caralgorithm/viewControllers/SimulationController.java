@@ -96,39 +96,4 @@ public class SimulationController
         menu.getItems().addAll(start, history, statistic);
 
     }
-
-    @FXML
-    public void handleMenuNormal(ActionEvent e)
-    {
-        System.out.println("start funktioniert");
-        loadScreen("../views/view.fxml");
-    }
-
-    @FXML
-    public void handleMenuHistory(ActionEvent e)
-    {
-        System.out.println("History funktioniert");
-        loadScreen("../views/history.fxml");
-    }
-
-    @FXML
-    public void handleMenuStatistiken(ActionEvent e)
-    {
-        System.out.println("Statistiken funktioniert");
-        loadScreen("../views/statistics.fxml");
-    }
-
-    public void loadScreen(String screen) {
-        Parent root;
-        try {
-            Stage stage = (Stage) window.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(screen));
-            root = loader.load();
-            Scene scene = new Scene(root, 1300, 950);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            System.err.println(ex);
-        }
-    }
 }
