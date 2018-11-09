@@ -44,7 +44,7 @@ public class SimulationController
     @FXML
     public void handleButtonStart(ActionEvent e)
     {
-        algorithm = new Algorithm(1, (int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth());
+        algorithm = new Algorithm(1, (int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth(), 10);
         this.loadPlayground();
         this.createLoop();
         loop.play();
@@ -96,4 +96,5 @@ public class SimulationController
         menu.getItems().addAll(start, history, statistic);
 
     }
+
 }

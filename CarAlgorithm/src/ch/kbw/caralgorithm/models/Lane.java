@@ -14,13 +14,18 @@ public class Lane {
      * @param globalFleaChance
      * @param windowWidth
      */
-    public Lane(int amountOfFields, double globalSpawnChance, double globalFleaChance, double windowWidth) {
+    public Lane(int amountOfFields, double globalSpawnChance, double globalFleaChance, double windowWidth, double height) {
         this.globalSpawnChance = globalSpawnChance;
         this.globalFleaChance = globalFleaChance;
         this.carsInLane = new ArrayList<>();
         this.fields = new ArrayList<>();
         for(int i = 0; i < amountOfFields; i++) {
             fields.add(new Field(windowWidth / amountOfFields, 50)); // TODO: Implement automatic width and height.
+        }
+    }
+    public Lane(int amountOfFields, double windowWidth, double windowHeigth){
+        for(int i = 0; i < amountOfFields; i++) {
+            fields.add(new Field(windowWidth / amountOfFields, 10));
         }
     }
 
