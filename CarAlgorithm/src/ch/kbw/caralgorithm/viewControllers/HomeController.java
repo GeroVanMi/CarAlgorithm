@@ -14,9 +14,9 @@ import javafx.util.Duration;
 /**
  *
  */
-public class HomeController extends ViewController
-{
+public class HomeController extends ViewController {
 
+    private NavigationController navController;
     private Algorithm algorithm;
     @FXML
     private VBox window, vBox;
@@ -35,18 +35,14 @@ public class HomeController extends ViewController
      * @param e
      */
     @FXML
-    public void handleButtonStart(ActionEvent e)
-    {
+    public void handleButtonStart(ActionEvent e) {
         algorithm = new Algorithm(1, (int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth());
         this.loadPlayground();
-        this.createLoop();
+        navController.createTimeline(tickSlider.getValue());
         loop.play();
     }
 
-    /**
-     *
-     */
-    public void createLoop()
+    /*public void createTimeline()
     {
         if (loop != null)
         {
@@ -59,16 +55,14 @@ public class HomeController extends ViewController
             changeField();
         }));
         loop.setCycleCount(Timeline.INDEFINITE);
-    }
+    }*/
 
     /**
      *
      */
-    public void loadPlayground()
-    {
+    public void loadPlayground() {
         playground.getChildren().clear();
-        for (Field f : algorithm.getLanes().get(0).getFields())
-        {
+        for (Field f : algorithm.getLanes().get(0).getFields()) {
             playground.getChildren().add(f.getLabel());
         }
     }
@@ -76,8 +70,7 @@ public class HomeController extends ViewController
     /**
      * hier kann man mit Hilfe der Menubars zwischen verschiedenen Versionen wechseln.
      */
-    public void changeField()
-    {
+    public void changeField() {
         menuBar = new MenuBar();
         vBox = new VBox(menuBar);
         ActionEvent e = new ActionEvent();
@@ -91,8 +84,9 @@ public class HomeController extends ViewController
     }
 
     @Override
-    public void initialize() {
-        algorithm = new Algorithm(1, (int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth());
+    public void initialize(NavigationController navController) {
+        this.algorithm = navController.getAlgorithm();
+        this.loop = navController.getLoop();
         this.loadPlayground();
     }
 }
