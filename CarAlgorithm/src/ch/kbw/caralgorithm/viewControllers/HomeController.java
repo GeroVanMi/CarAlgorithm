@@ -5,23 +5,16 @@ import ch.kbw.caralgorithm.models.Field;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.io.IOException;
 
 /**
  *
  */
-public class HomeController
+public class HomeController extends ViewController
 {
 
     private Algorithm algorithm;
@@ -81,7 +74,7 @@ public class HomeController
     }
 
     /**
-     * hier kann man  mit Hilfe des Menubars zwischen verschiedenen Versionen wechseln.
+     * hier kann man mit Hilfe der Menubars zwischen verschiedenen Versionen wechseln.
      */
     public void changeField()
     {
@@ -95,5 +88,11 @@ public class HomeController
         MenuItem statistic = new Menu();
         menu.getItems().addAll(start, history, statistic);
 
+    }
+
+    @Override
+    public void initialize() {
+        algorithm = new Algorithm(1, (int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth());
+        this.loadPlayground();
     }
 }

@@ -1,6 +1,5 @@
 #white {
-    -fx-background-color: white;
-    -fx-border-color: black;
+    -fx-background-color: rgb(150, 150, 150);
 }
 
 #red {

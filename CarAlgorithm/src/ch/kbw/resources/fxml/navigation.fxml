@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -8,9 +9,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" stylesheets="@../stylesheets/navigationStyleSheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.kbw.caralgorithm.viewControllers.NavigationController">
+<BorderPane id="navBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.kbw.caralgorithm.viewControllers.NavigationController">
    <top>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane prefHeight="125.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="400.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="400.0" />
@@ -21,7 +22,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="title" alignment="CENTER" prefHeight="50.0" prefWidth="1200.0" text="Nagel-Schreckenberg-Modell" GridPane.columnSpan="3">
+            <Label id="title" fx:id="title" alignment="CENTER" prefHeight="50.0" prefWidth="1200.0" text="Nagel-Schreckenberg-Modell" GridPane.columnSpan="3">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -31,9 +32,13 @@
                <font>
                   <Font size="16.0" />
                </font></Label>
-            <Button mnemonicParsing="false" onAction="#handleButtonHistory" prefHeight="35.0" prefWidth="400.0" text="History" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#handleButtonHome" prefHeight="35.0" prefWidth="400.0" text="Home" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#handleButtonStatistics" prefHeight="35.0" prefWidth="400.0" text="Statistics" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#handleButtonHistory" prefHeight="35.0" prefWidth="400.0" styleClass="navButton" text="History" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#handleButtonHome" prefHeight="35.0" prefWidth="400.0" styleClass="navButton" stylesheets="@../stylesheets/navigationStyleSheet.css" text="Home" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#handleButtonStatistics" prefHeight="35.0" prefWidth="400.0" text="Statistics" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <styleClass>
+                  <String fx:value="navButton" />
+                  <String fx:value="navButtonR" />
+               </styleClass></Button>
          </children>
       </GridPane>
    </top>
@@ -44,4 +49,8 @@
          </BorderPane.margin>
       </AnchorPane>
    </center>
+   <stylesheets>
+      <URL value="@../stylesheets/navigationStyleSheet.css" />
+      <URL value="@../stylesheets/styleSheet.css" />
+   </stylesheets>
 </BorderPane>
