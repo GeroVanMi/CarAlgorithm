@@ -15,7 +15,7 @@ public class Main extends Application
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/fxml/navigation.fxml"));
         Parent root = loader.load();
         NavigationController navigationController = loader.getController();
-        navigationController.initialize();
+        navigationController.setup();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Phantomstau");

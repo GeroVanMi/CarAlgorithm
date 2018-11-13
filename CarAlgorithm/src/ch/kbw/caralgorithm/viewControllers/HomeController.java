@@ -14,9 +14,9 @@ import javafx.util.Duration;
 /**
  *
  */
-public class HomeController extends ViewController {
+public class HomeController extends ViewController
+{
 
-    private NavigationController navController;
     private Algorithm algorithm;
     @FXML
     private VBox window, vBox;
@@ -29,48 +29,41 @@ public class HomeController extends ViewController {
     @FXML
     private MenuBar menuBar;
 
-    private Timeline loop;
+    private Timeline updater;
 
     /**
      * @param e
      */
     @FXML
-    public void handleButtonStart(ActionEvent e) {
-        algorithm = new Algorithm(1, (int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth());
-        this.loadPlayground();
-        navController.createTimeline(tickSlider.getValue());
-        loop.play();
-    }
-
-    /*public void createTimeline()
+    public void handleButtonStart(ActionEvent e)
     {
-        if (loop != null)
-        {
-            loop.stop();
-        }
-        loop = new Timeline(new KeyFrame(Duration.millis(1000 / tickSlider.getValue()), event ->
-        {
-            algorithm.tick();
-            loadPlayground();
-            changeField();
-        }));
-        loop.setCycleCount(Timeline.INDEFINITE);
-    }*/
+        algorithm = new Algorithm(1, (int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth(), 2);
+        algorithm.playLoop();
+        this.loadPlayground();
+        updater.play();
+    }
 
     /**
      *
      */
-    public void loadPlayground() {
-        playground.getChildren().clear();
-        for (Field f : algorithm.getLanes().get(0).getFields()) {
-            playground.getChildren().add(f.getLabel());
-        }
+    public void loadPlayground()
+    {
+        updater = new Timeline(new KeyFrame(Duration.millis(1000 / this.tickSlider.getValue()), event ->
+        {
+            playground.getChildren().clear();
+            for (Field f : algorithm.getLanes().get(0).getFields())
+            {
+                playground.getChildren().add(f.getLabel());
+            }
+        }));
+        updater.setCycleCount(Timeline.INDEFINITE);
     }
 
     /**
      * hier kann man mit Hilfe der Menubars zwischen verschiedenen Versionen wechseln.
      */
-    public void changeField() {
+    public void changeField()
+    {
         menuBar = new MenuBar();
         vBox = new VBox(menuBar);
         ActionEvent e = new ActionEvent();
@@ -80,13 +73,11 @@ public class HomeController extends ViewController {
         MenuItem history = new Menu();
         MenuItem statistic = new Menu();
         menu.getItems().addAll(start, history, statistic);
-
     }
 
     @Override
-    public void initialize(NavigationController navController) {
-        this.algorithm = navController.getAlgorithm();
-        this.loop = navController.getLoop();
+    public void setup( NavigationController navigationController) {
+        this.algorithm = algorithm;
         this.loadPlayground();
     }
 }
