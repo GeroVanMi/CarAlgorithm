@@ -1,11 +1,13 @@
 package ch.kbw.caralgorithm.viewControllers;
 
 import ch.kbw.caralgorithm.models.Algorithm;
+import ch.kbw.caralgorithm.models.Car;
 import ch.kbw.caralgorithm.models.Field;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -14,8 +16,7 @@ import javafx.util.Duration;
 /**
  *
  */
-public class HomeController extends ViewController
-{
+public class HomeController extends ViewController {
 
     private Algorithm algorithm;
     @FXML
@@ -26,18 +27,19 @@ public class HomeController extends ViewController
     private HBox playground;
     @FXML
     private Slider tickSlider, fleaSlider, spawnSlider, amountOfFields;
-    @FXML
-    private MenuBar menuBar;
 
     private Timeline updater;
+    private NavigationController navigationController;
 
     /**
      * @param e
      */
     @FXML
-    public void handleButtonStart(ActionEvent e)
-    {
-        algorithm = new Algorithm(1, (int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth(), 2);
+    public void handleButtonStart(ActionEvent e) {
+        if (algorithm == null) {
+            algorithm = new Algorithm(1, (int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth(), 2);
+            navigationController.setAlgorithm(algorithm);
+        }
         algorithm.playLoop();
         this.loadPlayground();
         updater.play();
@@ -46,38 +48,32 @@ public class HomeController extends ViewController
     /**
      *
      */
-    public void loadPlayground()
-    {
+    public void loadPlayground() {
+        playground.getChildren().clear();
+        for (Field f : algorithm.getLanes().get(0).getFields()) {
+            playground.getChildren().add(f.getLabel());
+        }
         updater = new Timeline(new KeyFrame(Duration.millis(1000 / this.tickSlider.getValue()), event ->
         {
-            playground.getChildren().clear();
-            for (Field f : algorithm.getLanes().get(0).getFields())
-            {
-                playground.getChildren().add(f.getLabel());
+            try {
+                for (Car c : algorithm.getLanes().get(0).getCarsInLane()) {
+                    playground.getChildren().get(c.getPosition()).setId(c.getColor());
+                }
+            } catch (IndexOutOfBoundsException ex) {
+                // TODO: Handle car left lane
             }
         }));
         updater.setCycleCount(Timeline.INDEFINITE);
     }
 
-    /**
-     * hier kann man mit Hilfe der Menubars zwischen verschiedenen Versionen wechseln.
-     */
-    public void changeField()
-    {
-        menuBar = new MenuBar();
-        vBox = new VBox(menuBar);
-        ActionEvent e = new ActionEvent();
-        Menu menu = new Menu();
-
-        MenuItem start = new Menu();
-        MenuItem history = new Menu();
-        MenuItem statistic = new Menu();
-        menu.getItems().addAll(start, history, statistic);
-    }
-
     @Override
-    public void setup( NavigationController navigationController) {
-        this.algorithm = algorithm;
-        this.loadPlayground();
+    public void setup(NavigationController navigationController) {
+        try {
+            this.navigationController = navigationController;
+            this.algorithm = navigationController.getAlgorithm();
+            this.loadPlayground();
+        } catch (NullPointerException ex) {
+            // TODO: Handle first call
+        }
     }
 }

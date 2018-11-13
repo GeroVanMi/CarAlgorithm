@@ -124,4 +124,8 @@ public class Lane {
     public void setGlobalFleaChance(double globalFleaChance) {
         this.globalFleaChance = globalFleaChance;
     }
+
+    public ArrayList<Car> getCarsInLane() {
+        return carsInLane;
+    }
 }

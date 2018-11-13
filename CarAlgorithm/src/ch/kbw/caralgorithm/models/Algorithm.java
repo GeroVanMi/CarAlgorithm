@@ -44,7 +44,7 @@ public class Algorithm {
         loop = new Timeline(new KeyFrame(Duration.millis(1000 / ticksPerSecond), event ->
         {
             this.tick();
-            System.out.println("Ticking...");
+            totalTimeInTicks++;
         }));
         loop.setCycleCount(Timeline.INDEFINITE);
     }

@@ -52,4 +52,12 @@ public class NavigationController {
             ex.printStackTrace();
         }
     }
+
+    public void setAlgorithm(Algorithm algorithm) {
+        this.algorithm = algorithm;
+    }
+
+    public Algorithm getAlgorithm() {
+        return algorithm;
+    }
 }
