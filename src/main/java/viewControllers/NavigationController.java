@@ -3,13 +3,14 @@ package viewControllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import models.Algorithm;
 
+/**
+ * Kontrolliert die Navigation und sorgt dafür, dass der gewünschte Inhalt angezeigt wird.
+ */
 public class NavigationController {
 
     private Algorithm algorithm;

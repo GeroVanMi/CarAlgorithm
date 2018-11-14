@@ -32,7 +32,7 @@ public class HomeController extends ViewController {
     private NavigationController navigationController;
 
     /**
-     * @param e
+     *
      */
     @FXML
     public void handleButtonStart(ActionEvent e) {
@@ -45,6 +45,9 @@ public class HomeController extends ViewController {
         updater.play();
     }
 
+    /**
+     * @param e
+     */
     @FXML
     public void handleButtonReset(ActionEvent e) {
         algorithm = new Algorithm(1, (int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth(), tickSlider.getValue());
@@ -75,6 +78,9 @@ public class HomeController extends ViewController {
         updater.setCycleCount(Timeline.INDEFINITE);
     }
 
+    /**
+     * @param navigationController
+     */
     @Override
     public void setup(NavigationController navigationController) {
         try {
