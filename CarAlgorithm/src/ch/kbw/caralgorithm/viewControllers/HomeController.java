@@ -37,9 +37,18 @@ public class HomeController extends ViewController {
     @FXML
     public void handleButtonStart(ActionEvent e) {
         if (algorithm == null) {
-            algorithm = new Algorithm(1, (int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth(), 2);
+            algorithm = new Algorithm(1, (int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth(), tickSlider.getValue());
             navigationController.setAlgorithm(algorithm);
         }
+        algorithm.playLoop();
+        this.loadPlayground();
+        updater.play();
+    }
+
+    @FXML
+    public void handleButtonReset(ActionEvent e) {
+        algorithm = new Algorithm(1, (int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth(), tickSlider.getValue());
+        navigationController.setAlgorithm(algorithm);
         algorithm.playLoop();
         this.loadPlayground();
         updater.play();

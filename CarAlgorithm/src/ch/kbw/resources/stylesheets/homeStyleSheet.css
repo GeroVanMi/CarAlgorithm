@@ -12,3 +12,11 @@
 #resetButton:hover {
     -fx-background-color: rgb(180, 110, 0);
 }
+
+.slider .axis {
+    -fx-tick-label-fill: rgb(200, 200, 200);
+}
+
+.slider .track {
+    -fx-background-color: rgb(100, 100, 100);
+}
