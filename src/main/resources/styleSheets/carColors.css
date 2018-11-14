@@ -1,0 +1,38 @@
+#white {
+    -fx-background-color: rgb(125, 125, 125);
+}
+
+#red {
+    -fx-background-color: rgb(200, 50, 0);
+    -fx-border-color: black;
+}
+
+#darkOrange {
+    -fx-background-color: rgb(140, 80, 0);
+    -fx-border-color: black;
+}
+
+#orange {
+    -fx-background-color: rgb(220, 140, 0);
+    -fx-border-color: black;
+}
+
+#darkYellow {
+    -fx-background-color: rgb(190, 190, 0);
+    -fx-border-color: black;
+}
+
+#yellow {
+    -fx-background-color: rgb(255, 255, 0);
+    -fx-border-color: black;
+}
+
+#green {
+    -fx-background-color: rgb(100, 200, 0);
+    -fx-border-color: black;
+}
+
+#darkGreen {
+    -fx-background-color: rgb(0, 100, 0);
+    -fx-border-color: black;
+}

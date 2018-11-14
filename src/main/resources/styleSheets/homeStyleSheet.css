@@ -1,0 +1,22 @@
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(200, 200, 200);
+    -fx-border-color: rgb(200, 200, 200);
+    -fx-font-size: 14pt;
+}
+
+#startButton:hover {
+    -fx-background-color: rgb(50, 150, 50);
+}
+
+#resetButton:hover {
+    -fx-background-color: rgb(180, 110, 0);
+}
+
+.slider .axis {
+    -fx-tick-label-fill: rgb(200, 200, 200);
+}
+
+.slider .track {
+    -fx-background-color: rgb(100, 100, 100);
+}
