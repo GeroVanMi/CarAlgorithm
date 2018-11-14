@@ -113,4 +113,24 @@ public class Lane {
     public ArrayList<Field> getFields() {
         return fields;
     }
+
+    public double getGlobalSpawnChance() {
+        return globalSpawnChance;
+    }
+
+    public void setGlobalSpawnChance(double globalSpawnChance) {
+        this.globalSpawnChance = globalSpawnChance;
+    }
+
+    public double getGlobalFleaChance() {
+        return globalFleaChance;
+    }
+
+    public void setGlobalFleaChance(double globalFleaChance) {
+        this.globalFleaChance = globalFleaChance;
+    }
+
+    public ArrayList<Car> getCarsInLane() {
+        return carsInLane;
+    }
 }

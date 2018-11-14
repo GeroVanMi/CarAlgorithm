@@ -1,5 +1,6 @@
 package ch.kbw.caralgorithm.viewControllers;
 
+import ch.kbw.caralgorithm.models.Algorithm;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,12 +10,13 @@ import javafx.scene.control.Label;
 
 public class NavigationController {
 
+    private Algorithm algorithm;
     @FXML
     private AnchorPane contentPane;
     @FXML
     private Label title;
 
-    public void setUp() {
+    public void setup() {
         loadContent("../../resources/fxml/home.fxml");
         title.setText("Nagel-Schreckenberg-Modell Home");
     }
@@ -26,27 +28,36 @@ public class NavigationController {
     }
 
     @FXML
-    public void handleButtonHome(ActionEvent e) {
+    public void handleButtonHome(ActionEvent ae) {
         loadContent("../../resources/fxml/home.fxml");
         title.setText("Nagel-Schreckenberg-Modell Home");
     }
 
     @FXML
-    public void handleButtonStatistics(ActionEvent e) {
+    public void handleButtonStatistics(ActionEvent ae) {
         loadContent("../../resources/fxml/statistics.fxml");
         title.setText("Nagel-Schreckenberg-Modell Statistics");
     }
 
     public void loadContent(String path) {
         try {
-            for(int i = 0; i < contentPane.getChildren().size(); i++) {
-                contentPane.getChildren().remove(0);
-            }
-            Pane pane = FXMLLoader.load(getClass().getResource(path));
+            contentPane.getChildren().clear();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+            Pane pane = loader.load();
             contentPane.getChildren().add(pane);
+            ViewController viewController = loader.getController();
+            viewController.setup(this);
         } catch (Exception ex) {
             // TODO: NULL
             ex.printStackTrace();
         }
+    }
+
+    public void setAlgorithm(Algorithm algorithm) {
+        this.algorithm = algorithm;
+    }
+
+    public Algorithm getAlgorithm() {
+        return algorithm;
     }
 }

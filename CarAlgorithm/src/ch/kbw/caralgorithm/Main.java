@@ -1,5 +1,6 @@
 package ch.kbw.caralgorithm;
 
+import ch.kbw.caralgorithm.viewControllers.NavigationController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,10 +12,14 @@ public class Main extends Application
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/navigation.fxml"));
-        primaryStage.setResizable(false);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/fxml/navigation.fxml"));
+        Parent root = loader.load();
+        NavigationController navigationController = loader.getController();
+        navigationController.setup();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
         primaryStage.setTitle("Phantomstau");
-        primaryStage.setScene(new Scene(root, 1200, 900));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
