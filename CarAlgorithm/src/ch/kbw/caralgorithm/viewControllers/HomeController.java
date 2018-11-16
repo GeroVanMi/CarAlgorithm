@@ -31,6 +31,7 @@ public class HomeController extends ViewController {
     private Timeline updater;
     private NavigationController navigationController;
 
+
     /**
      * @param e
      */
@@ -85,4 +86,5 @@ public class HomeController extends ViewController {
             // TODO: Handle first call
         }
     }
+
 }

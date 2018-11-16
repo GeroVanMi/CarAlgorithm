@@ -16,16 +16,12 @@ public class Algorithm {
     /**
      * @param amountOfLanes
      * @param amountOfFields
-     * @param spawnChance
      * @param fleaChance
      * @param windowWidth
      */
     public Algorithm(int amountOfLanes ,int amountOfFields, double spawnChance, double fleaChance, double windowWidth, double tps) {
         this.lanes = new ArrayList<>();
         this.totalTimeInTicks = 0;
-        for(int i = 0; i < amountOfLanes; i++) {
-            this.lanes.add(new Lane(amountOfFields, spawnChance, fleaChance, windowWidth));
-        }
         this.createLoop(tps);
     }
 

@@ -22,11 +22,7 @@ public class Lane {
         for(int i = 0; i < amountOfFields; i++) {
             fields.add(new Field(windowWidth / amountOfFields, 50)); // TODO: Implement automatic width and height.
         }
-    }
-    public Lane(int amountOfFields, double windowWidth, double windowHeigth){
-        for(int i = 0; i < amountOfFields; i++) {
-            fields.add(new Field(windowWidth / amountOfFields, 10));
-        }
+
     }
 
     public void clearLane() {
