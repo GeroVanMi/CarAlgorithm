@@ -45,14 +45,18 @@ public class NavigationController {
 
     public void loadContent(String path) {
         try {
+            if(currentContentController != null) {
+                currentContentController.destory();
+            }
             contentPane.getChildren().clear();
-            currentContentController.destory();
             FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
             Pane pane = loader.load();
             contentPane.getChildren().add(pane);
             ViewController viewController = loader.getController();
-            viewController.setup(this);
-            currentContentController = viewController;
+            if(viewController != null) {
+                viewController.setup(this);
+                currentContentController = viewController;
+            }
         } catch (Exception ex) {
             // TODO: NULL
             ex.printStackTrace();
