@@ -29,6 +29,7 @@ public class HistoryController extends ViewController {
             playgrounds.getChildren().clear();
             for(State state : algorithm.getLane().getPreviousStates()) {
                 HBox hBox = new HBox();
+                hBox.getStyleClass().add("historyLane");
                 for(Field field : state.getFields()) {
                     hBox.getChildren().add(field.getLabel());
                 }

@@ -12,6 +12,7 @@
     <stylesheets>
         <URL value="@../styleSheets/carColors.css" />
         <URL value="@../styleSheets/styleSheet.css" />
+      <URL value="@../styleSheets/historyStyleSheet.css" />
     </stylesheets>
     <children>
         <Label fx:id="l" />
