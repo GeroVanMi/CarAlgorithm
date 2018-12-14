@@ -106,6 +106,9 @@ public class Lane {
      * Ruft alle Methoden für den Algorithmus relevanten Methoden auf.
      */
     public void tick() {
+        // Speichert den aktuellen Stand ab
+        this.previousStates.add(new State(this.getCurrentState()));
+        // Tatsächliches Tick-Handeling
         for(Car c:carsInLane) {
             c.tick();
         }

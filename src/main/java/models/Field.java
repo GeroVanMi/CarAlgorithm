@@ -21,7 +21,7 @@ public class Field {
     private int occupationTime;
 
     /**
-     * Konstrukter fuer die Klasse Field.
+     * Konstruktor fuer die Klasse Field.
      * Erstellt ein Feld mitsamt Label, auf dem kein Auto ist und setzt die Zeit, in der das Feld bisher
      * belegt war, auf 0.
      * @param width Laenge des Feldes
@@ -33,6 +33,16 @@ public class Field {
         label.setPrefSize(width, height);
         label.setId("white");
         occupationTime = 0;
+    }
+
+    /**
+     * Konstruktor, um ein bereits bestehendes Feld zu kopieren.
+     * @param field
+     */
+    public Field(Field field) {
+        this.hasCar = field.hasCar();
+        this.label = field.getLabel();
+        this.occupationTime = field.getOccupationTime();
     }
 
     /**
@@ -77,5 +87,9 @@ public class Field {
      */
     public Label getLabel() {
         return label;
+    }
+
+    public int getOccupationTime() {
+        return occupationTime;
     }
 }

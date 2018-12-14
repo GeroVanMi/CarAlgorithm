@@ -12,7 +12,6 @@ import java.util.ArrayList;
  */
 public class Algorithm {
     private Lane lane;
-    private ArrayList<Field> previousStates;
     private int totalTimeInTicks;
     private double ticksPerSecond;
     private Timeline loop;
