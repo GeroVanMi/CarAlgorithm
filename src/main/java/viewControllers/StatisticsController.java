@@ -25,9 +25,9 @@ public class StatisticsController extends ViewController {
             this.algorithm = navigationController.getAlgorithm();
             updater = new Timeline(new KeyFrame(Duration.millis(1000 / algorithm.getTicksPerSecond()), e -> {
                 amount.setText("" + algorithm.getLane().getCarsInLane().size());
-                spawnChance.setText("" + algorithm.getLane().getGlobalSpawnChance() + "%");
-                fleaChance.setText("" + algorithm.getLane().getGlobalFleaChance() + "%");
-                avgSpeed.setText("" + algorithm.getLane().calculateAvgSpeed());
+                spawnChance.setText("" + Math.round(algorithm.getLane().getGlobalSpawnChance()) + "%");
+                fleaChance.setText("" + Math.round(algorithm.getLane().getGlobalFleaChance()) + "%");
+                avgSpeed.setText("" + Math.round(algorithm.getLane().calculateAvgSpeed() * 100) / 100);
                 ticks.setText("" + algorithm.getTimeInTicks());
             }));
             updater.setCycleCount(Timeline.INDEFINITE);

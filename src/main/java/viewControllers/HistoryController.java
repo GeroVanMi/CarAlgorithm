@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import models.Algorithm;
-import models.Lane;
 
 /**
  *
@@ -14,10 +13,8 @@ public class HistoryController extends ViewController {
     @FXML
     private VBox playgrounds;
     private Algorithm algorithm;
-    private Lane lane;
 
 
-    //like constructor
     @Override
     public void setup(NavigationController navigationController) {
         this.algorithm = navigationController.getAlgorithm();
