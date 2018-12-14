@@ -5,11 +5,14 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+
 /**
  *
  */
 public class Algorithm {
     private Lane lane;
+    private ArrayList<Field> previousStates;
     private int totalTimeInTicks;
     private double ticksPerSecond;
     private Timeline loop;
@@ -40,6 +43,7 @@ public class Algorithm {
         {
             loop.stop();
         }
+        // TODO: Make tps editable
         loop = new Timeline(new KeyFrame(Duration.millis(1000 / ticksPerSecond), event ->
         {
             this.tick();
@@ -66,6 +70,10 @@ public class Algorithm {
     public void tick() {
         lane.tick();
         totalTimeInTicks++;
+    }
+
+    public void saveCurrentState() {
+        this.previousStates.add();
     }
 
     /**

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Lane {
-    private ArrayList<Field> fields;
+    private ArrayList<Field> currentState;
+    private ArrayList<State> previousStates;
     private ArrayList<Car> carsInLane;
     private double globalSpawnChance, globalFleaChance;
 
@@ -17,10 +18,11 @@ public class Lane {
     public Lane(int amountOfFields, double globalSpawnChance, double globalFleaChance, double windowWidth) {
         this.globalSpawnChance = globalSpawnChance;
         this.globalFleaChance = globalFleaChance;
+        this.currentState = new ArrayList<>();
         this.carsInLane = new ArrayList<>();
-        this.fields = new ArrayList<>();
+        this.previousStates = new ArrayList<>();
         for(int i = 0; i < amountOfFields; i++) {
-            fields.add(new Field(windowWidth / amountOfFields, 50)); // TODO: Implement automatic width and height.
+            currentState.add(new Field(windowWidth / amountOfFields, 50));
         }
     }
 
@@ -46,9 +48,9 @@ public class Lane {
      */
     private void spawnNewCar() {
         Random r = new Random();
-        if(!fields.get(0).hasCar() && r.nextInt(100) < globalSpawnChance) {
+        if(!currentState.get(0).hasCar() && r.nextInt(100) < globalSpawnChance) {
             Car c = new Car(5, 6);
-            fields.get(0).carArrives(c.getColor());
+            currentState.get(0).carArrives(c.getColor());
             carsInLane.add(c);
         }
     }
@@ -61,7 +63,7 @@ public class Lane {
         try {
             for (Car c : carsInLane) {
                 for (int i = c.getSpeed(); i > 0; i--) {
-                    if (fields.get(c.getPosition() + i + 1).hasCar()) {
+                    if (currentState.get(c.getPosition() + i + 1).hasCar()) {
                         c.setSpeed(i);
                         c.adjustColor();
                     }
@@ -78,10 +80,10 @@ public class Lane {
         ArrayList<Car> carsLeavingLane = new ArrayList<>();
         for (Car c : carsInLane) {
             try {
-                fields.get(c.getPosition()).carLeaves();
+                currentState.get(c.getPosition()).carLeaves();
                 c.move();
-                fields.get(c.getPosition()).carArrives(c.getColor());
-                fields.get(c.getPosition()).incrementOccupationTime();
+                currentState.get(c.getPosition()).carArrives(c.getColor());
+                currentState.get(c.getPosition()).incrementOccupationTime();
             } catch (IndexOutOfBoundsException ignored) {
                 carsLeavingLane.add(c);
             }
@@ -116,8 +118,8 @@ public class Lane {
     /**
      * @return
      */
-    public ArrayList<Field> getFields() {
-        return fields;
+    public ArrayList<Field> getCurrentState() {
+        return currentState;
     }
 
     public double getGlobalSpawnChance() {

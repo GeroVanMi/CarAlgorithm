@@ -71,7 +71,7 @@ public class HomeController extends ViewController {
      */
     public void loadPlayground() {
         playground.getChildren().clear();
-        for (Field f : algorithm.getLane().getFields()) {
+        for (Field f : algorithm.getLane().getCurrentState()) {
             playground.getChildren().add(f.getLabel());
         }
     }
