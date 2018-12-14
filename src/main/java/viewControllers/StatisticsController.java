@@ -21,15 +21,18 @@ public class StatisticsController extends ViewController {
 
     @Override
     public void setup(NavigationController navigationController) {
-        this.algorithm = navigationController.getAlgorithm();
-        updater = new Timeline(new KeyFrame(Duration.millis(1000 / algorithm.getTicksPerSecond()), e -> {
-            amount.setText("" + algorithm.getLane().getCarsInLane().size());
-            spawnChance.setText("" + algorithm.getLane().getGlobalSpawnChance());
-            spawnChance.setText("" + algorithm.getLane().getGlobalFleaChance());
-            ticks.setText("" + algorithm.getTimeInTicks());
-        }));
-        updater.setCycleCount(Timeline.INDEFINITE);
-        updater.play();
+        if(navigationController.getAlgorithm() != null) {
+            this.algorithm = navigationController.getAlgorithm();
+            updater = new Timeline(new KeyFrame(Duration.millis(1000 / algorithm.getTicksPerSecond()), e -> {
+                amount.setText("" + algorithm.getLane().getCarsInLane().size());
+                spawnChance.setText("" + algorithm.getLane().getGlobalSpawnChance() + "%");
+                fleaChance.setText("" + algorithm.getLane().getGlobalFleaChance() + "%");
+                avgSpeed.setText("" + algorithm.getLane().calculateAvgSpeed());
+                ticks.setText("" + algorithm.getTimeInTicks());
+            }));
+            updater.setCycleCount(Timeline.INDEFINITE);
+            updater.play();
+        }
     }
 
     @Override

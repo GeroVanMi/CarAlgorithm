@@ -90,6 +90,17 @@ public class Lane {
     }
 
     /**
+     * Berechnet die aktuelle Durchschnittsgeschwindigkeit.
+     */
+    public float calculateAvgSpeed() {
+        float avgSpeed = 0;
+        for(Car c:carsInLane) {
+            avgSpeed += c.getSpeed();
+        }
+        return avgSpeed / carsInLane.size();
+    }
+
+    /**
      * Ruft alle Methoden für den Algorithmus relevanten Methoden auf.
      */
     public void tick() {

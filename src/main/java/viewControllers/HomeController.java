@@ -114,6 +114,8 @@ public class HomeController extends ViewController {
 
     @Override
     public void destroy() {
-        updater.stop();
+        if(updater != null) {
+            updater.stop();
+        }
     }
 }
