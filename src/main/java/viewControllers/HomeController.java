@@ -1,7 +1,6 @@
 package viewControllers;
 
 import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,9 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 import models.Algorithm;
-import models.Car;
 import models.Field;
 
 /**
@@ -43,7 +40,6 @@ public class HomeController extends ViewController {
         }
         algorithm.playLoop();
         this.loadPlayground();
-        updater.play();
         starterButton.setText("Pause");
         starterButton.setId("pauseButton");
         starterButton.setOnAction(this::handleButtonPause);
@@ -78,17 +74,6 @@ public class HomeController extends ViewController {
         for (Field f : algorithm.getLane().getFields()) {
             playground.getChildren().add(f.getLabel());
         }
-        updater = new Timeline(new KeyFrame(Duration.millis(1000 / this.tickSlider.getValue()), event ->
-        {
-            try {
-                for (Car c : algorithm.getLane().getCarsInLane()) {
-                    playground.getChildren().get(c.getPosition()).setId(c.getColor());
-                }
-            } catch (IndexOutOfBoundsException ex) {
-                // TODO: Handle car left lane
-            }
-        }));
-        updater.setCycleCount(Timeline.INDEFINITE);
     }
 
     /**
@@ -114,8 +99,5 @@ public class HomeController extends ViewController {
 
     @Override
     public void destroy() {
-        if(updater != null) {
-            updater.stop();
-        }
     }
 }
