@@ -27,7 +27,7 @@ public class NavigationController {
 
     @FXML
     public void handleButtonHistory(ActionEvent ae) {
-         loadContent("/views/history.fxml");
+         loadContent("/views/notHistory.fxml");
          title.setText("Nagel-Schreckenberg-Modell History");
     }
 
