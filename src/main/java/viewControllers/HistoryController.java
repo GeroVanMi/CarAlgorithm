@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import models.Algorithm;
-import models.Lane;
 
 /**
  *
@@ -14,7 +13,7 @@ public class HistoryController extends ViewController {
     @FXML
     private VBox playgrounds;
     private Algorithm algorithm;
-    private Lane lane;
+
 
 
     //like constructor
@@ -29,7 +28,7 @@ public class HistoryController extends ViewController {
             for(int j = 0; j < algorithm.getLane().getFields().size(); j++) {
                 Label label = new Label();
                 label.setId("white");
-                label.setPrefSize(25, 50);
+                label.setPrefSize(playgrounds.getWidth()/algorithm.getLane().getFields().size(), playgrounds.getHeight()/20);
                 hBox.getChildren().add(label);
             }
             playgrounds.getChildren().add(hBox);
