@@ -72,10 +72,6 @@ public class Algorithm {
         totalTimeInTicks++;
     }
 
-    public void saveCurrentState() {
-        this.previousStates.add();
-    }
-
     /**
      * @return
      */
