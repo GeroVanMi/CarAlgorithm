@@ -15,6 +15,11 @@ public class Field {
      * Das Label, das effektiv auf dem UI angezeigt wird.
      */
     private Label label;
+
+    /**
+     * Breite und Höhe des Feldes.
+     */
+    private double width, height;
     /**
      * Haelt fest, fuer wieviele Ticks / Runden sich ein Auto auf dem Feld befunden hat.
      */
@@ -28,6 +33,8 @@ public class Field {
      * @param height Hoehe des Feldes
      */
     public Field(double width, double height) {
+        this.width = width;
+        this.height = height;
         this.hasCar = false;
         label = new Label();
         label.setPrefSize(width, height);
@@ -41,7 +48,9 @@ public class Field {
      */
     public Field(Field field) {
         this.hasCar = field.hasCar();
-        this.label = field.getLabel();
+        this.label = new Label();
+        this.label.setPrefSize(field.getWidth(), field.getHeight());
+        this.label.setId(field.getLabel().getId());
         this.occupationTime = field.getOccupationTime();
     }
 
@@ -91,5 +100,13 @@ public class Field {
 
     public int getOccupationTime() {
         return occupationTime;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
     }
 }

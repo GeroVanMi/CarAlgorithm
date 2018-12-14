@@ -27,7 +27,7 @@ public class StatisticsController extends ViewController {
                 amount.setText("" + algorithm.getLane().getCarsInLane().size());
                 spawnChance.setText("" + Math.round(algorithm.getLane().getGlobalSpawnChance()) + "%");
                 fleaChance.setText("" + Math.round(algorithm.getLane().getGlobalFleaChance()) + "%");
-                avgSpeed.setText("" + Math.round(algorithm.getLane().calculateAvgSpeed() * 100) / 100);
+                avgSpeed.setText("" + algorithm.getLane().calculateAvgSpeed());
                 ticks.setText("" + algorithm.getTimeInTicks());
             }));
             updater.setCycleCount(Timeline.INDEFINITE);

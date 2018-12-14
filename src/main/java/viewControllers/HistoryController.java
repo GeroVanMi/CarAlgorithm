@@ -1,10 +1,14 @@
 package viewControllers;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import models.Algorithm;
+import models.Field;
+import models.State;
 
 /**
  *
@@ -13,6 +17,7 @@ public class HistoryController extends ViewController {
     @FXML
     private VBox playgrounds;
     private Algorithm algorithm;
+    private Timeline updater;
 
     @Override
     public void setup(NavigationController navigationController) {
@@ -20,21 +25,22 @@ public class HistoryController extends ViewController {
         this.algorithm = navigationController.getAlgorithm();
         playgrounds.getChildren().clear();
 
-        for (int i = 0; i < 20; i++) {
-            HBox hBox = new HBox();
-
-            for(int j = 0; j < algorithm.getLane().getCurrentState().size(); j++) {
-                Label label = new Label();
-                label.setId("white");
-                label.setPrefSize(playgrounds.getWidth()/algorithm.getLane().getCurrentState().size(), playgrounds.getHeight()/20);
-                hBox.getChildren().add(label);
+        this.updater = new Timeline(new KeyFrame(Duration.millis(1000 / algorithm.getTicksPerSecond()), e -> {
+            playgrounds.getChildren().clear();
+            for(State state : algorithm.getLane().getPreviousStates()) {
+                HBox hBox = new HBox();
+                for(Field field : state.getFields()) {
+                    hBox.getChildren().add(field.getLabel());
+                }
+                playgrounds.getChildren().add(hBox);
             }
-            playgrounds.getChildren().add(hBox);
-        }
+        }));
+        this.updater.setCycleCount(Timeline.INDEFINITE);
+        this.updater.play();
     }
 
     @Override
     public void destroy() {
-
+        this.updater.stop();
     }
 }

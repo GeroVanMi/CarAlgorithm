@@ -106,9 +106,7 @@ public class Lane {
      * Ruft alle Methoden für den Algorithmus relevanten Methoden auf.
      */
     public void tick() {
-        // Speichert den aktuellen Stand ab
-        this.previousStates.add(new State(this.getCurrentState()));
-        // Tatsächliches Tick-Handeling
+        this.saveState();
         for(Car c:carsInLane) {
             c.tick();
         }
@@ -116,6 +114,16 @@ public class Lane {
         this.checkForCollisions();
         this.moveCars();
         this.spawnNewCar();
+    }
+
+    /**
+     * Speichert den aktuellen Stand der Linie.
+     */
+    public void saveState() {
+        if(previousStates.size() >= 20) {
+            previousStates.remove(0);
+        }
+        this.previousStates.add(new State(this.getCurrentState()));
     }
 
     /**
@@ -143,5 +151,9 @@ public class Lane {
 
     public ArrayList<Car> getCarsInLane() {
         return carsInLane;
+    }
+
+    public ArrayList<State> getPreviousStates() {
+        return previousStates;
     }
 }

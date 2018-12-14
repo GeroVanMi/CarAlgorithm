@@ -26,7 +26,6 @@ public class HomeController extends ViewController {
     @FXML
     private Slider tickSlider, fleaSlider, spawnSlider, amountOfFields;
 
-    private Timeline updater;
     private NavigationController navigationController;
 
     /**
@@ -48,7 +47,6 @@ public class HomeController extends ViewController {
     @FXML
     public void handleButtonPause(ActionEvent e) {
         algorithm.pauseLoop();
-        updater.pause();
         starterButton.setText("Resume");
         starterButton.setId("startButton");
         starterButton.setOnAction(this::handleButtonStart);
@@ -63,7 +61,6 @@ public class HomeController extends ViewController {
         navigationController.setAlgorithm(algorithm);
         algorithm.playLoop();
         this.loadPlayground();
-        updater.play();
     }
 
     /**
