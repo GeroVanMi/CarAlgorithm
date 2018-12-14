@@ -9,8 +9,12 @@
     -fx-background-color: rgb(50, 150, 50);
 }
 
-#resetButton:hover {
+#pauseButton:hover {
     -fx-background-color: rgb(180, 110, 0);
+}
+
+#resetButton:hover {
+    -fx-background-color: rgb(150, 0, 0);
 }
 
 .slider .axis {

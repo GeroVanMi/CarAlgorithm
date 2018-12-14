@@ -1,17 +1,17 @@
 package models;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
-
-import java.util.ArrayList;
 
 /**
  *
  */
 public class Algorithm {
-    private ArrayList<Lane> lanes;
+    private Lane lane;
     private int totalTimeInTicks;
+    private double ticksPerSecond;
     private Timeline loop;
 
     /**
@@ -21,13 +21,11 @@ public class Algorithm {
      * @param fleaChance
      * @param windowWidth
      */
-    public Algorithm(int amountOfLanes ,int amountOfFields, double spawnChance, double fleaChance, double windowWidth, double tps) {
-        this.lanes = new ArrayList<>();
+    public Algorithm(int amountOfLanes ,int amountOfFields, double spawnChance, double fleaChance, double windowWidth, double ticksPerSecond) {
+        this.ticksPerSecond = ticksPerSecond;
         this.totalTimeInTicks = 0;
-        for(int i = 0; i < amountOfLanes; i++) {
-            this.lanes.add(new Lane(amountOfFields, spawnChance, fleaChance, windowWidth));
-        }
-        this.createLoop(tps);
+        this.lane = new Lane(amountOfFields, spawnChance, fleaChance, windowWidth);
+        this.createLoop();
     }
 
     /**
@@ -37,7 +35,7 @@ public class Algorithm {
         this.totalTimeInTicks = 0;
     }
 
-    public void createLoop(double ticksPerSecond) {
+    public void createLoop() {
         if(loop != null)
         {
             loop.stop();
@@ -66,16 +64,30 @@ public class Algorithm {
      *
      */
     public void tick() {
-        for(Lane l:lanes) {
-            l.tick();
-            totalTimeInTicks++;
-        }
+        lane.tick();
+        totalTimeInTicks++;
     }
 
     /**
      * @return
      */
-    public ArrayList<Lane> getLanes() {
-        return lanes;
+    public Lane getLane() {
+        return lane;
+    }
+
+    public double getTicksPerSecond() {
+        return ticksPerSecond;
+    }
+
+    public void setTicksPerSecond(double ticksPerSecond) {
+        this.ticksPerSecond = ticksPerSecond;
+    }
+
+    public int getTimeInTicks() {
+        return totalTimeInTicks;
+    }
+
+    public Animation.Status getStatus() {
+        return loop.getStatus();
     }
 }

@@ -1,5 +1,6 @@
 package viewControllers;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -20,7 +21,7 @@ public class HomeController extends ViewController {
 
     private Algorithm algorithm;
     @FXML
-    private VBox window, vBox;
+    private VBox window;
     @FXML
     private Button starterButton;
     @FXML
@@ -43,6 +44,18 @@ public class HomeController extends ViewController {
         algorithm.playLoop();
         this.loadPlayground();
         updater.play();
+        starterButton.setText("Pause");
+        starterButton.setId("pauseButton");
+        starterButton.setOnAction(this::handleButtonPause);
+    }
+
+    @FXML
+    public void handleButtonPause(ActionEvent e) {
+        algorithm.pauseLoop();
+        updater.pause();
+        starterButton.setText("Resume");
+        starterButton.setId("startButton");
+        starterButton.setOnAction(this::handleButtonStart);
     }
 
     /**
@@ -62,13 +75,13 @@ public class HomeController extends ViewController {
      */
     public void loadPlayground() {
         playground.getChildren().clear();
-        for (Field f : algorithm.getLanes().get(0).getFields()) {
+        for (Field f : algorithm.getLane().getFields()) {
             playground.getChildren().add(f.getLabel());
         }
         updater = new Timeline(new KeyFrame(Duration.millis(1000 / this.tickSlider.getValue()), event ->
         {
             try {
-                for (Car c : algorithm.getLanes().get(0).getCarsInLane()) {
+                for (Car c : algorithm.getLane().getCarsInLane()) {
                     playground.getChildren().get(c.getPosition()).setId(c.getColor());
                 }
             } catch (IndexOutOfBoundsException ex) {
@@ -86,14 +99,21 @@ public class HomeController extends ViewController {
         try {
             this.navigationController = navigationController;
             this.algorithm = navigationController.getAlgorithm();
+            this.fleaSlider.setValue(algorithm.getLane().getGlobalFleaChance());
+            this.spawnSlider.setValue(algorithm.getLane().getGlobalSpawnChance());
+            this.tickSlider.setValue(algorithm.getTicksPerSecond());
             this.loadPlayground();
+
+            if(algorithm.getStatus() == Animation.Status.RUNNING) {
+                
+            }
         } catch (NullPointerException ex) {
             // TODO: Handle first call
         }
     }
 
     @Override
-    public void destory() {
+    public void destroy() {
         updater.stop();
     }
 }

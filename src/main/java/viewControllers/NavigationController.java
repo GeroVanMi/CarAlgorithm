@@ -46,7 +46,7 @@ public class NavigationController {
     public void loadContent(String path) {
         try {
             if(currentContentController != null) {
-                currentContentController.destory();
+                currentContentController.destroy();
             }
             contentPane.getChildren().clear();
             FXMLLoader loader = new FXMLLoader(getClass().getResource(path));

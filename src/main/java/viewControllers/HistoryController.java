@@ -11,7 +11,7 @@ public class HistoryController extends ViewController
     }
 
     @Override
-    public void destory() {
+    public void destroy() {
 
     }
 }
