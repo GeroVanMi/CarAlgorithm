@@ -3,6 +3,7 @@ package viewControllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -41,6 +42,29 @@ public class NavigationController {
     public void handleButtonStatistics(ActionEvent ae) {
         loadContent("/views/statistics.fxml");
         title.setText("Nagel-Schreckenberg-Modell Statistics");
+    }
+
+    @FXML
+    public void handleButtonStop(ActionEvent ae) {
+        algorithm.stopLoop();
+    }
+
+    @FXML
+    public void handleButtonPlay(ActionEvent ae) {
+        Button button = (Button)ae.getSource();
+        button.setOnAction(this::handleButtonPause);
+        algorithm.playLoop();
+    }
+
+    public void handleButtonPause(ActionEvent ae) {
+        Button button = (Button)ae.getSource();
+        button.setOnAction(this::handleButtonPlay);
+        algorithm.pauseLoop();
+    }
+
+    @FXML
+    public void handleButtonForward(ActionEvent ae) {
+        algorithm.tick();
     }
 
     public void loadContent(String path) {

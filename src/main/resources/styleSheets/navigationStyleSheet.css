@@ -21,3 +21,11 @@
 .navButtonR {
     -fx-border-color: rgb(200, 200, 200) transparent transparent transparent;
 }
+
+.stopButton {
+    -fx-background-color: rgb(150, 0, 0);
+}
+
+.stopButton:hover {
+    -fx-background-color: rgb(200, 50, 50);
+}
