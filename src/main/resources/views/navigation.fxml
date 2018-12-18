@@ -47,17 +47,17 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#handleButtonStop" prefHeight="40.0" prefWidth="40.0" styleClass="stopButton">
                      <HBox.margin>
-                        <Insets bottom="14.0" left="15.0" right="15.0" top="14.0" />
+                        <Insets bottom="14.0" left="7.5" right="7.5" top="14.0" />
                      </HBox.margin>
                   </Button>
                   <Button mnemonicParsing="false" onAction="#handleButtonPlay" prefHeight="40.0" prefWidth="40.0" styleClass="playButton">
                      <HBox.margin>
-                        <Insets bottom="14.0" left="15.0" right="15.0" top="14.0" />
+                        <Insets bottom="14.0" left="7.5" right="7.5" top="14.0" />
                      </HBox.margin>
                   </Button>
                   <Button mnemonicParsing="false" onAction="#handleButtonForward" prefHeight="40.0" prefWidth="40.0" styleClass="forwardButton">
                      <HBox.margin>
-                        <Insets bottom="14.0" left="15.0" right="15.0" top="14.0" />
+                        <Insets bottom="14.0" left="7.5" right="7.5" top="14.0" />
                      </HBox.margin>
                   </Button>
                </children>
