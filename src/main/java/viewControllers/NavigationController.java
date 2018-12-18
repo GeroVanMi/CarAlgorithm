@@ -22,6 +22,7 @@ public class NavigationController {
     private Label title;
 
     public void setup() {
+        algorithm = new Algorithm(1, 50, 50, contentPane.getWidth(), 2);
         loadContent("/views/home.fxml");
         title.setText("Nagel-Schreckenberg-Modell Home");
     }

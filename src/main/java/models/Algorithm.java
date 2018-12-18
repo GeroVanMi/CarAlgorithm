@@ -15,13 +15,12 @@ public class Algorithm {
     private Timeline loop;
 
     /**
-     * @param amountOfLanes
      * @param amountOfFields
      * @param spawnChance
      * @param fleaChance
      * @param windowWidth
      */
-    public Algorithm(int amountOfLanes ,int amountOfFields, double spawnChance, double fleaChance, double windowWidth, double ticksPerSecond) {
+    public Algorithm(int amountOfFields, double spawnChance, double fleaChance, double windowWidth, double ticksPerSecond) {
         this.ticksPerSecond = ticksPerSecond;
         this.totalTimeInTicks = 0;
         this.lane = new Lane(amountOfFields, spawnChance, fleaChance, windowWidth);
