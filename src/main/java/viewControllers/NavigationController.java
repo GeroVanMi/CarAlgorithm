@@ -22,7 +22,7 @@ public class NavigationController {
     private Label title;
 
     public void setup() {
-        algorithm = new Algorithm(1, 50, 50, contentPane.getWidth(), 2);
+        algorithm = new Algorithm(100, 50, 50, contentPane.getWidth(), 2);
         algorithm.playLoop();
         loadContent("/views/home.fxml");
         title.setText("Nagel-Schreckenberg-Modell Home");
@@ -49,7 +49,7 @@ public class NavigationController {
     @FXML
     public void handleButtonStop(ActionEvent ae) {
         algorithm.stopLoop();
-        algorithm = new Algorithm(1, 50, 50, contentPane.getWidth(), 2);
+        algorithm = new Algorithm(100, 50, 50, contentPane.getWidth(), 2);
     }
 
     @FXML

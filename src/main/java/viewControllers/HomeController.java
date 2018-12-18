@@ -82,10 +82,11 @@ public class HomeController extends ViewController {
             this.algorithm = navigationController.getAlgorithm();
             this.fleaSlider.setValue(algorithm.getLane().getGlobalFleaChance());
             this.spawnSlider.setValue(algorithm.getLane().getGlobalSpawnChance());
+            this.amountOfFields.setValue(algorithm.getLane().getFields().size());
             this.tickSlider.setValue(algorithm.getTicksPerSecond());
             this.loadPlayground();
         } catch (NullPointerException ex) {
-            // TODO: Handle first call
+            ex.printStackTrace();
         }
     }
 
