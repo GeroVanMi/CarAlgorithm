@@ -23,6 +23,7 @@ public class NavigationController {
 
     public void setup() {
         algorithm = new Algorithm(1, 50, 50, contentPane.getWidth(), 2);
+        algorithm.playLoop();
         loadContent("/views/home.fxml");
         title.setText("Nagel-Schreckenberg-Modell Home");
     }
@@ -48,18 +49,23 @@ public class NavigationController {
     @FXML
     public void handleButtonStop(ActionEvent ae) {
         algorithm.stopLoop();
+        algorithm = new Algorithm(1, 50, 50, contentPane.getWidth(), 2);
     }
 
     @FXML
     public void handleButtonPlay(ActionEvent ae) {
         Button button = (Button)ae.getSource();
         button.setOnAction(this::handleButtonPause);
+        button.getStyleClass().clear();
+        button.getStyleClass().add("pauseButton");
         algorithm.playLoop();
     }
 
     public void handleButtonPause(ActionEvent ae) {
         Button button = (Button)ae.getSource();
         button.setOnAction(this::handleButtonPlay);
+        button.getStyleClass().clear();
+        button.getStyleClass().add("playButton");
         algorithm.pauseLoop();
     }
 

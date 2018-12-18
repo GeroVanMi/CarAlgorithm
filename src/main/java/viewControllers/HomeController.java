@@ -84,10 +84,6 @@ public class HomeController extends ViewController {
             this.spawnSlider.setValue(algorithm.getLane().getGlobalSpawnChance());
             this.tickSlider.setValue(algorithm.getTicksPerSecond());
             this.loadPlayground();
-
-            if(algorithm.getStatus() == Animation.Status.RUNNING) {
-                
-            }
         } catch (NullPointerException ex) {
             // TODO: Handle first call
         }
