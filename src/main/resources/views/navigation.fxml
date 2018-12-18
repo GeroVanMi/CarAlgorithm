@@ -50,7 +50,7 @@
                         <Insets bottom="14.0" left="7.5" right="7.5" top="14.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#handleButtonPlay" prefHeight="40.0" prefWidth="40.0" styleClass="playButton">
+                  <Button mnemonicParsing="false" onAction="#handleButtonPause" prefHeight="40.0" prefWidth="40.0" styleClass="pauseButton">
                      <HBox.margin>
                         <Insets bottom="14.0" left="7.5" right="7.5" top="14.0" />
                      </HBox.margin>

@@ -61,6 +61,7 @@ public class NavigationController {
         algorithm.playLoop();
     }
 
+    @FXML
     public void handleButtonPause(ActionEvent ae) {
         Button button = (Button)ae.getSource();
         button.setOnAction(this::handleButtonPlay);
