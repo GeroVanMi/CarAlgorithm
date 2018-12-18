@@ -1,7 +1,6 @@
 package viewControllers;
 
 import javafx.animation.Animation;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,7 +25,6 @@ public class HomeController extends ViewController {
     @FXML
     private Slider tickSlider, fleaSlider, spawnSlider, amountOfFields;
 
-    private Timeline updater;
     private NavigationController navigationController;
 
     /**
@@ -35,7 +33,7 @@ public class HomeController extends ViewController {
     @FXML
     public void handleButtonStart(ActionEvent e) {
         if (algorithm == null) {
-            algorithm = new Algorithm(1, (int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth(), tickSlider.getValue());
+            algorithm = new Algorithm((int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth(), tickSlider.getValue());
             navigationController.setAlgorithm(algorithm);
         }
         algorithm.playLoop();
@@ -48,7 +46,6 @@ public class HomeController extends ViewController {
     @FXML
     public void handleButtonPause(ActionEvent e) {
         algorithm.pauseLoop();
-        updater.pause();
         starterButton.setText("Resume");
         starterButton.setId("startButton");
         starterButton.setOnAction(this::handleButtonStart);
@@ -59,11 +56,10 @@ public class HomeController extends ViewController {
      */
     @FXML
     public void handleButtonReset(ActionEvent e) {
-        algorithm = new Algorithm(1, (int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth(), tickSlider.getValue());
+        algorithm = new Algorithm((int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth(), tickSlider.getValue());
         navigationController.setAlgorithm(algorithm);
         algorithm.playLoop();
         this.loadPlayground();
-        updater.play();
     }
 
     /**
