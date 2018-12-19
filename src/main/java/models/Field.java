@@ -20,7 +20,9 @@ public class Field {
      */
     private int occupationTime;
 
-
+    /**
+     * Die Farbe, die das Feld aktuell hat. Sie basiert auf der Geschwindigkeit des Autos, das auf dem Feld ist oder ist weiss.
+     */
     private String color;
 
     /**
@@ -36,6 +38,7 @@ public class Field {
         label.setPrefSize(width, height);
         label.setId("white");
         occupationTime = 0;
+        color = "white";
     }
 
     /**
@@ -44,6 +47,7 @@ public class Field {
     public void carArrives(String color) {
         this.hasCar = true;
         label.setId(color);
+        this.color = color;
     }
 
     /**
@@ -52,6 +56,7 @@ public class Field {
     public void carLeaves() {
         this.hasCar = false;
         label.setId("white");
+        this.color = "white";
     }
 
     /**
@@ -80,6 +85,13 @@ public class Field {
      */
     public Label getLabel() {
         return label;
+    }
+
+    /**
+     * @return Gibt die Farbe des Feldes zurück.
+     */
+    public String getColor() {
+        return color;
     }
 
     public void tick() {
