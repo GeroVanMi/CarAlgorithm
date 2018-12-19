@@ -20,6 +20,9 @@ public class Field {
      */
     private int occupationTime;
 
+
+    private String color;
+
     /**
      * Konstrukter fuer die Klasse Field.
      * Erstellt ein Feld mitsamt Label, auf dem kein Auto ist und setzt die Zeit, in der das Feld bisher
@@ -77,5 +80,11 @@ public class Field {
      */
     public Label getLabel() {
         return label;
+    }
+
+    public void tick() {
+        if(hasCar) {
+            this.occupationTime++;
+        }
     }
 }
