@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
+
 <VBox fx:id="window" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewControllers.HomeController">
     <children>
       <Label fx:id="label" />
@@ -14,7 +17,6 @@
         </HBox>
         <GridPane prefHeight="175.0" prefWidth="1280.0">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
@@ -30,12 +32,12 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </GridPane.margin>
                 </Slider>
-                <Label alignment="CENTER" prefHeight="17.0" prefWidth="484.0" styleClass="text" text="Ticks per second">
+                <Label alignment="CENTER" prefHeight="17.0" prefWidth="600.0" styleClass="text" text="Ticks per second">
                     <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </GridPane.margin>
                 </Label>
-                <Label alignment="CENTER" prefHeight="17.0" prefWidth="434.0" styleClass="text" text="Flea Chance" GridPane.columnIndex="1">
+                <Label alignment="CENTER" prefHeight="17.0" prefWidth="600.0" styleClass="text" text="Flea Chance" GridPane.columnIndex="1">
                     <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </GridPane.margin>
@@ -45,34 +47,29 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </GridPane.margin>
                 </Slider>
-                <Label alignment="CENTER" prefHeight="17.0" prefWidth="438.0" styleClass="text" text="Spawnchance of a new Car" GridPane.rowIndex="2" />
+                <Label alignment="CENTER" prefHeight="17.0" prefWidth="600.0" styleClass="text" text="Spawnchance of a new Car" GridPane.rowIndex="2" />
                 <Slider fx:id="spawnSlider" majorTickUnit="20.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" value="50.0" GridPane.rowIndex="3">
                     <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </GridPane.margin>
                 </Slider>
-                <Button id="startButton" fx:id="starterButton" mnemonicParsing="false" onAction="#handleButtonStart" prefHeight="100.0" prefWidth="406.0" text="Start" GridPane.columnIndex="2" GridPane.rowSpan="2">
-                    <GridPane.margin>
-                        <Insets left="20.0" right="20.0" top="40.0" />
-                    </GridPane.margin>
-                </Button>
                 <Slider fx:id="amountOfFields" max="250.0" min="25.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="60.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </GridPane.margin>
                 </Slider>
-                <Label alignment="CENTER" prefHeight="241.0" prefWidth="427.0" styleClass="text" text="Fields" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Label alignment="CENTER" prefHeight="241.0" prefWidth="600.0" styleClass="text" text="Fields" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </GridPane.margin>
                 </Label>
-                <Button id="resetButton" mnemonicParsing="false" onAction="#handleButtonReset" prefHeight="100.0" prefWidth="406.0" text="Reset" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
-                    <GridPane.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" top="30.0" />
-                    </GridPane.margin>
-                </Button>
             </children>
         </GridPane>
+      <CheckBox fx:id="borderCheckBox" mnemonicParsing="false" onAction="#setBorders" text="Show Border" textFill="#c8c8c8">
+         <VBox.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </VBox.margin>
+      </CheckBox>
     </children>
    <stylesheets>
       <URL value="@../styleSheets/carColors.css" />

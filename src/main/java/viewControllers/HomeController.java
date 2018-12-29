@@ -1,9 +1,9 @@
 package viewControllers;
 
-import javafx.animation.Animation;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
@@ -25,33 +25,10 @@ public class HomeController extends ViewController {
     private HBox playground;
     @FXML
     private Slider tickSlider, fleaSlider, spawnSlider, amountOfFields;
+    @FXML
+    private CheckBox borderCheckBox;
 
     private NavigationController navigationController;
-
-    /**
-     *
-     */
-    @FXML
-    public void handleButtonStart(ActionEvent e) {
-        // TODO: Delete buttons
-    }
-
-    @FXML
-    public void handleButtonPause(ActionEvent e) {
-        algorithm.pauseLoop();
-        starterButton.setText("Resume");
-        starterButton.setId("startButton");
-        starterButton.setOnAction(this::handleButtonStart);
-    }
-
-    /**
-     * @param e
-     */
-    @FXML
-    public void handleButtonReset(ActionEvent e) {
-        // TODO: Delete buttons
-    }
-
 
     public void createPlayground() {
         for (Field field : algorithm.getLane().getFields()) {
@@ -84,9 +61,21 @@ public class HomeController extends ViewController {
         }
     }
 
+    @FXML
+    public void setBorders() {
+        for(Node node : playground.getChildren()) {
+            node.getStyleClass().clear();
+            if(borderCheckBox.isSelected()) {
+                node.getStyleClass().add("border");
+            } else {
+                node.getStyleClass().add("borderless");
+            }
+        }
+    }
+
     @Override
     public void destroy() {
-        // TODO: How to implement destroy()
+        // TODO: implement destroy()
     }
 
     @Override

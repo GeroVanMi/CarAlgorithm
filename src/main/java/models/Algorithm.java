@@ -86,7 +86,7 @@ public class Algorithm {
         return totalTimeInTicks;
     }
 
-    public Animation.Status getStatus() {
-        return loop.getStatus();
+    public Timeline getLoop() {
+        return loop;
     }
 }
