@@ -30,8 +30,8 @@ public class NavigationController {
 
     @FXML
     public void handleButtonHistory(ActionEvent ae) {
-         loadContent("/views/notHistory.fxml");
-         title.setText("Nagel-Schreckenberg-Modell History");
+        loadContent("/views/notHistory.fxml");
+        title.setText("Nagel-Schreckenberg-Modell History");
     }
 
     @FXML
@@ -54,7 +54,7 @@ public class NavigationController {
 
     @FXML
     public void handleButtonPlay(ActionEvent ae) {
-        Button button = (Button)ae.getSource();
+        Button button = (Button) ae.getSource();
         button.setOnAction(this::handleButtonPause);
         button.getStyleClass().clear();
         button.getStyleClass().add("pauseButton");
@@ -63,7 +63,7 @@ public class NavigationController {
 
     @FXML
     public void handleButtonPause(ActionEvent ae) {
-        Button button = (Button)ae.getSource();
+        Button button = (Button) ae.getSource();
         button.setOnAction(this::handleButtonPlay);
         button.getStyleClass().clear();
         button.getStyleClass().add("playButton");
@@ -77,7 +77,7 @@ public class NavigationController {
 
     public void loadContent(String path) {
         try {
-            if(currentContentController != null) {
+            if (currentContentController != null) {
                 currentContentController.destroy();
             }
             contentPane.getChildren().clear();
@@ -85,8 +85,7 @@ public class NavigationController {
             Pane pane = loader.load();
             contentPane.getChildren().add(pane);
             ViewController viewController = loader.getController();
-            if(viewController != null) {
-                viewController.setup(this);
+            if (viewController != null) {
                 currentContentController = viewController;
             }
         } catch (Exception ex) {

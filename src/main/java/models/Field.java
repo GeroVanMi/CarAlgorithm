@@ -81,13 +81,6 @@ public class Field {
     }
 
     /**
-     * @return
-     */
-    public Label getLabel() {
-        return label;
-    }
-
-    /**
      * @return Gibt die Farbe des Feldes zurück.
      */
     public String getColor() {

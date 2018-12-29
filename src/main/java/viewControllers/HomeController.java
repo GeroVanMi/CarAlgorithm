@@ -4,6 +4,7 @@ import javafx.animation.Animation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -68,7 +69,18 @@ public class HomeController extends ViewController {
     public void loadPlayground() {
         playground.getChildren().clear();
         for (Field f : algorithm.getLane().getFields()) {
-            playground.getChildren().add(f.getLabel());
+
+        }
+    }
+
+    public void createPlayground() {
+        for (Field field : algorithm.getLane().getFields()) {
+            Label label = new Label();
+            label.setId(field.getColor());
+            label.setMinWidth(window.getWidth() / algorithm.getLane().getFields().size());
+            label.setMinHeight(50);
+            label.setPrefSize(window.getWidth() / algorithm.getLane().getFields().size(), 50);
+            playground.getChildren().add(label);
         }
     }
 
@@ -80,14 +92,19 @@ public class HomeController extends ViewController {
         try {
             this.navigationController = navigationController;
             this.algorithm = navigationController.getAlgorithm();
-            this.fleaSlider.setValue(algorithm.getLane().getGlobalFleaChance());
-            this.spawnSlider.setValue(algorithm.getLane().getGlobalSpawnChance());
-            this.amountOfFields.setValue(algorithm.getLane().getFields().size());
-            this.tickSlider.setValue(algorithm.getTicksPerSecond());
-            this.loadPlayground();
         } catch (NullPointerException ex) {
             ex.printStackTrace();
         }
+    }
+
+    @FXML
+    public void initialize() {
+
+        this.fleaSlider.setValue(algorithm.getLane().getGlobalFleaChance());
+        this.spawnSlider.setValue(algorithm.getLane().getGlobalSpawnChance());
+        this.amountOfFields.setValue(algorithm.getLane().getFields().size());
+        this.tickSlider.setValue(algorithm.getTicksPerSecond());
+        this.createPlayground();
     }
 
     @Override
