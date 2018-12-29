@@ -86,6 +86,7 @@ public class NavigationController {
             contentPane.getChildren().add(pane);
             ViewController viewController = loader.getController();
             if (viewController != null) {
+                viewController.setup(this);
                 currentContentController = viewController;
             }
         } catch (Exception ex) {

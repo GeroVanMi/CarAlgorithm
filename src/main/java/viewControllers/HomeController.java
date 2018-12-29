@@ -33,15 +33,7 @@ public class HomeController extends ViewController {
      */
     @FXML
     public void handleButtonStart(ActionEvent e) {
-        if (algorithm == null) {
-            algorithm = new Algorithm((int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth(), tickSlider.getValue());
-            navigationController.setAlgorithm(algorithm);
-        }
-        algorithm.playLoop();
-        this.loadPlayground();
-        starterButton.setText("Pause");
-        starterButton.setId("pauseButton");
-        starterButton.setOnAction(this::handleButtonPause);
+        // TODO: Delete buttons
     }
 
     @FXML
@@ -57,29 +49,19 @@ public class HomeController extends ViewController {
      */
     @FXML
     public void handleButtonReset(ActionEvent e) {
-        algorithm = new Algorithm((int) amountOfFields.getValue(), spawnSlider.getValue(), fleaSlider.getValue(), window.getWidth(), tickSlider.getValue());
-        navigationController.setAlgorithm(algorithm);
-        algorithm.playLoop();
-        this.loadPlayground();
+        // TODO: Delete buttons
     }
 
-    /**
-     *
-     */
-    public void loadPlayground() {
-        playground.getChildren().clear();
-        for (Field f : algorithm.getLane().getFields()) {
-
-        }
-    }
 
     public void createPlayground() {
         for (Field field : algorithm.getLane().getFields()) {
             Label label = new Label();
             label.setId(field.getColor());
-            label.setMinWidth(window.getWidth() / algorithm.getLane().getFields().size());
+            label.setMinWidth(window.getPrefWidth() / algorithm.getLane().getFields().size());
             label.setMinHeight(50);
             label.setPrefSize(window.getWidth() / algorithm.getLane().getFields().size(), 50);
+
+            field.addLabel(label);
             playground.getChildren().add(label);
         }
     }
@@ -92,22 +74,18 @@ public class HomeController extends ViewController {
         try {
             this.navigationController = navigationController;
             this.algorithm = navigationController.getAlgorithm();
+            this.fleaSlider.setValue(algorithm.getLane().getGlobalFleaChance());
+            this.spawnSlider.setValue(algorithm.getLane().getGlobalSpawnChance());
+            this.amountOfFields.setValue(algorithm.getLane().getFields().size());
+            this.tickSlider.setValue(algorithm.getTicksPerSecond());
+            this.createPlayground();
         } catch (NullPointerException ex) {
             ex.printStackTrace();
         }
     }
 
-    @FXML
-    public void initialize() {
-
-        this.fleaSlider.setValue(algorithm.getLane().getGlobalFleaChance());
-        this.spawnSlider.setValue(algorithm.getLane().getGlobalSpawnChance());
-        this.amountOfFields.setValue(algorithm.getLane().getFields().size());
-        this.tickSlider.setValue(algorithm.getTicksPerSecond());
-        this.createPlayground();
-    }
-
     @Override
     public void destroy() {
+        // TODO: How to implement destroy()
     }
 }

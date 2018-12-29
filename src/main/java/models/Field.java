@@ -49,10 +49,7 @@ public class Field {
     public void carArrives(String color) {
         this.hasCar = true;
         this.color = color;
-        // Sendet die neue Farbe an alle Labels, die das Feld darstellen.
-        for(Label label : labels) {
-            label.setId(color);
-        }
+        this.updateLabels(color);
     }
 
     /**
@@ -61,6 +58,17 @@ public class Field {
     public void carLeaves() {
         this.hasCar = false;
         this.color = "white";
+        this.updateLabels("white");
+    }
+
+    /**
+     * Sendet die neue Farbe an alle Labels, die das Feld darstellen.
+     * @param color
+     */
+    public void updateLabels(String color) {
+        for(Label label : labels) {
+            label.setId(color);
+        }
     }
 
     /**
@@ -95,5 +103,9 @@ public class Field {
         if(hasCar) {
             this.occupationTime++;
         }
+    }
+
+    public void addLabel(Label label) {
+        labels.add(label);
     }
 }
