@@ -82,7 +82,7 @@ public class Lane {
                 c.move();
                 fields.get(c.getPosition()).carArrives(c.getColor());
                 fields.get(c.getPosition()).incrementOccupationTime();
-            } catch (IndexOutOfBoundsException ignored) {
+            } catch (IndexOutOfBoundsException exception) {
                 carsLeavingLane.add(c);
             }
         }

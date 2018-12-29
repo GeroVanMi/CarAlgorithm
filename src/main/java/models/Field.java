@@ -2,6 +2,8 @@ package models;
 
 import javafx.scene.control.Label;
 
+import java.util.ArrayList;
+
 /**
  * Die Modelklasse Field haelt alle Informationen eines einzelnen Feldes innerhalb einer Bahn.
  */
@@ -11,10 +13,7 @@ public class Field {
      * Ein Wahr/Falsch Wert, der festhaelt, ob sich ein Auto auf dem Feld befindet.
      */
     private boolean hasCar;
-    /**
-     * Das Label, das effektiv auf dem UI angezeigt wird.
-     */
-    private Label label;
+
     /**
      * Haelt fest, fuer wieviele Ticks / Runden sich ein Auto auf dem Feld befunden hat.
      */
@@ -26,6 +25,11 @@ public class Field {
     private String color;
 
     /**
+     * Eine Liste, die alle Labels hält, die das Feld darstellen.
+     */
+    private ArrayList<Label> labels;
+
+    /**
      * Konstrukter fuer die Klasse Field.
      * Erstellt ein Feld mitsamt Label, auf dem kein Auto ist und setzt die Zeit, in der das Feld bisher
      * belegt war, auf 0.
@@ -33,12 +37,10 @@ public class Field {
      * @param height Hoehe des Feldes
      */
     public Field(double width, double height) {
+        this.labels = new ArrayList<>();
         this.hasCar = false;
-        label = new Label();
-        label.setPrefSize(width, height);
-        label.setId("white");
-        occupationTime = 0;
-        color = "white";
+        this.occupationTime = 0;
+        this.color = "white";
     }
 
     /**
@@ -46,8 +48,11 @@ public class Field {
      */
     public void carArrives(String color) {
         this.hasCar = true;
-        label.setId(color);
         this.color = color;
+        // Sendet die neue Farbe an alle Labels, die das Feld darstellen.
+        for(Label label : labels) {
+            label.setId(color);
+        }
     }
 
     /**
@@ -55,7 +60,6 @@ public class Field {
      */
     public void carLeaves() {
         this.hasCar = false;
-        label.setId("white");
         this.color = "white";
     }
 
