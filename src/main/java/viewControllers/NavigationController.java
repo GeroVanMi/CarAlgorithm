@@ -50,6 +50,8 @@ public class NavigationController {
     public void handleButtonStop(ActionEvent ae) {
         algorithm.stopLoop();
         algorithm = new Algorithm(100, 50, 50, contentPane.getWidth(), 2);
+        algorithm.playLoop();
+        currentContentController.reset();
     }
 
     @FXML

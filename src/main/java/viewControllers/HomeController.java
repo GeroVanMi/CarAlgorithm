@@ -88,4 +88,10 @@ public class HomeController extends ViewController {
     public void destroy() {
         // TODO: How to implement destroy()
     }
+
+    @Override
+    public void reset() {
+        this.playground.getChildren().clear();
+        this.setup(navigationController);
+    }
 }

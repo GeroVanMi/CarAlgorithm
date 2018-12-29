@@ -38,4 +38,9 @@ public class HistoryController extends ViewController {
     public void destroy() {
 
     }
+
+    @Override
+    public void reset() {
+
+    }
 }
