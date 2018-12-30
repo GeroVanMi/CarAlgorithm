@@ -78,6 +78,26 @@ public class HomeController extends ViewController {
         // TODO: implement destroy()
     }
 
+    @FXML
+    public void handleChangeTicks() {
+        algorithm.setTicksPerSecond(tickSlider.getValue());
+    }
+
+    @FXML
+    public void handleChangeFlea() {
+        algorithm.getLane().setGlobalFleaChance(fleaSlider.getValue());
+    }
+
+    @FXML
+    public void handleChangeSpawnChance() {
+        algorithm.getLane().setGlobalSpawnChance(spawnSlider.getValue());
+    }
+
+    @FXML
+    public void handleChangeFields() {
+        // TODO: Change and update field size without deleting cars
+    }
+
     @Override
     public void reset() {
         this.playground.getChildren().clear();
