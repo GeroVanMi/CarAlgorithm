@@ -9,18 +9,18 @@ public class Lane {
     private double globalSpawnChance, globalFleaChance;
 
     /**
-     * @param amountOfFields
+     * @param size
      * @param globalSpawnChance
      * @param globalFleaChance
      * @param windowWidth
      */
-    public Lane(int amountOfFields, double globalSpawnChance, double globalFleaChance, double windowWidth) {
+    public Lane(int size, double globalSpawnChance, double globalFleaChance, double windowWidth) {
         this.globalSpawnChance = globalSpawnChance;
         this.globalFleaChance = globalFleaChance;
         this.carsInLane = new ArrayList<>();
         this.fields = new ArrayList<>();
-        for(int i = 0; i < amountOfFields; i++) {
-            fields.add(new Field(windowWidth / amountOfFields, 50)); // TODO: Implement automatic width and height.
+        for(int i = 0; i < size; i++) {
+            fields.add(new Field(windowWidth / size, 50));
         }
     }
 
@@ -111,6 +111,22 @@ public class Lane {
         this.checkForCollisions();
         this.moveCars();
         this.spawnNewCar();
+    }
+
+    public void updateFields(int size, double windowWidth) {
+        fields.clear();
+        for(int i = 0; i < size; i++) {
+            fields.add(new Field(windowWidth / size, 50));
+        }
+        ArrayList<Car> carsOutOfLane = new ArrayList<>();
+        for(Car car : carsInLane) {
+            try {
+                fields.get(car.getPosition()).carArrives(car.getColor());
+            } catch (IndexOutOfBoundsException ex) {
+                carsOutOfLane.add(car);
+            }
+        }
+        carsInLane.removeAll(carsOutOfLane);
     }
 
     /**

@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import models.Algorithm;
+import models.Lane;
 
 /**
  * Kontrolliert die Navigation und sorgt dafür, dass der gewünschte Inhalt angezeigt wird.
@@ -49,7 +50,12 @@ public class NavigationController {
     @FXML
     public void handleButtonStop(ActionEvent ae) {
         algorithm.stopLoop();
-        algorithm = new Algorithm(100, 50, 50, contentPane.getWidth(), 2);
+        Lane currentLane = algorithm.getLane();
+        algorithm = new Algorithm(currentLane.getFields().size(),
+                        currentLane.getGlobalSpawnChance(),
+                        currentLane.getGlobalFleaChance(),
+                        contentPane.getWidth(),
+                        algorithm.getTicksPerSecond());
         algorithm.playLoop();
         currentContentController.reset();
     }

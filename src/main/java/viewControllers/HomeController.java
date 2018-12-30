@@ -95,7 +95,9 @@ public class HomeController extends ViewController {
 
     @FXML
     public void handleChangeFields() {
-        // TODO: Change and update field size without deleting cars
+        algorithm.getLane().updateFields((int)amountOfFields.getValue(), playground.getPrefWidth());
+        this.playground.getChildren().clear();
+        this.setup(navigationController);
     }
 
     @Override
