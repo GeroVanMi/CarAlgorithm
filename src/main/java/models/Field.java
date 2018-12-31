@@ -15,7 +15,7 @@ public class Field {
     private boolean hasCar;
 
     /**
-     * Haelt fest, fuer wieviele Ticks / Runden sich ein Auto auf dem Feld befunden hat.
+     * Haelt fest, fuer wieviele Ticks / Runden sich ein Auto auf dem Feld befunden hat. TODO: Zu Statistiken hinzufügen.
      */
     private int occupationTime;
 
@@ -63,7 +63,7 @@ public class Field {
 
     /**
      * Sendet die neue Farbe an alle Labels, die das Feld darstellen.
-     * @param color
+     * @param color Die Farbe des Feldes.
      */
     public void updateLabels(String color) {
         for(Label label : labels) {
@@ -97,12 +97,6 @@ public class Field {
      */
     public String getColor() {
         return color;
-    }
-
-    public void tick() {
-        if(hasCar) {
-            this.occupationTime++;
-        }
     }
 
     public void addLabel(Label label) {

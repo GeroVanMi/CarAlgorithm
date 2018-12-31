@@ -9,10 +9,10 @@ public class Lane {
     private double globalSpawnChance, globalFleaChance;
 
     /**
-     * @param size
-     * @param globalSpawnChance
-     * @param globalFleaChance
-     * @param windowWidth
+     * @param size Die Anzahl Felder in einer Lane.
+     * @param globalSpawnChance Die Prozentchance, mit der ein Auto in der Lane auftaucht.
+     * @param globalFleaChance Die Prozentchance, mit der ein Auto trödelt.
+     * @param windowWidth TODO: Remove this
      */
     public Lane(int size, double globalSpawnChance, double globalFleaChance, double windowWidth) {
         this.globalSpawnChance = globalSpawnChance;
@@ -24,6 +24,7 @@ public class Lane {
         }
     }
 
+    // TODO: Replace full algorithm reset with this method
     public void clearLane() {
         this.carsInLane.clear();
     }

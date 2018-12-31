@@ -36,13 +36,6 @@ public class Car {
     }
 
     /**
-     * Erhoeht die Geschwindigkeit um 1.
-     */
-    public void incrementSpeed() {
-        this.speed++;
-    }
-
-    /**
      * Verringert die Geschwindigkeit um 1.
      */
     public void decrementSpeed() {
