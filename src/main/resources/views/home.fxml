@@ -78,32 +78,32 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Cars in Lane">
+            <Label text="Cars in Lane" textFill="#c8c8c8">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="amountOfCars" text="0" GridPane.columnIndex="1">
+            <Label fx:id="amountOfCars" text="0" textFill="#c8c8c8" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Average Speed" GridPane.rowIndex="1">
+            <Label text="Average Speed" textFill="#c8c8c8" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="avgSpeed" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="avgSpeed" text="0" textFill="#c8c8c8" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Ticks passed" GridPane.rowIndex="2">
+            <Label text="Ticks passed" textFill="#c8c8c8" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="ticksPassed" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="ticksPassed" text="0" textFill="#c8c8c8" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
