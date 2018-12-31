@@ -3,7 +3,6 @@ package viewControllers;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
@@ -20,8 +19,6 @@ public class HomeController extends ViewController {
     private Algorithm algorithm;
     @FXML
     private VBox window;
-    @FXML
-    private Button starterButton;
     @FXML
     private HBox playground;
     @FXML
@@ -47,7 +44,9 @@ public class HomeController extends ViewController {
     }
 
     /**
-     * @param navigationController
+     * Die Methode setup sorgt dafür, dass alle Werte vom Algorithmus auf die Slider gelegt werden und das Spielfeld
+     * erstellt wird. Ausserdem werden die Statistiken festgelegt.
+     * @param navigationController Der Navigationscontroller, der alle Daten bereithält.
      */
     @Override
     public void setup(NavigationController navigationController) {
@@ -63,9 +62,9 @@ public class HomeController extends ViewController {
             // Statistics
             this.algorithm = navigationController.getAlgorithm();
             Timeline updater = new Timeline(new KeyFrame(Duration.millis(1000 / algorithm.getTicksPerSecond()), e -> {
-                amountOfCars.setText("" + algorithm.getLane().getCarsInLane().size());
-                avgSpeed.setText("" + Math.round(algorithm.getLane().calculateAvgSpeed() * 100) / 100);
-                ticksPassed.setText("" + algorithm.getTimeInTicks());
+                amountOfCars.setText("" + algorithm.getLane().getCarsInLane().size() + " cars");
+                avgSpeed.setText("" + Math.round(algorithm.getLane().calculateAvgSpeed() * 100) / 100 + " fields per tick");// TODO: Better representation
+                ticksPassed.setText("" + algorithm.getTimeInTicks() + " ticks");
             }));
             updater.setCycleCount(Timeline.INDEFINITE);
             updater.play();
