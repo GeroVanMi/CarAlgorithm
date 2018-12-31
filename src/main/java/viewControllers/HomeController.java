@@ -14,7 +14,7 @@ import models.Field;
 /**
  *
  */
-public class HomeController extends ViewController {
+public class HomeController implements ViewController {
 
     private Algorithm algorithm;
     @FXML

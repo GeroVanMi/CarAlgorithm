@@ -11,7 +11,7 @@ import javafx.util.Duration;
 import models.Algorithm;
 import models.Field;
 
-public class HistoryController extends ViewController {
+public class HistoryController implements ViewController {
     @FXML
     private VBox playgrounds;
     private NavigationController navigationController;
@@ -34,9 +34,7 @@ public class HistoryController extends ViewController {
             }
             playgrounds.getChildren().add(hBox);
         }
-        Timeline updater = new Timeline(new KeyFrame(Duration.millis(1000 / algorithm.getTicksPerSecond()), e -> {
-            this.tick();
-        }));
+        Timeline updater = new Timeline(new KeyFrame(Duration.millis(1000 / algorithm.getTicksPerSecond()), e -> this.tick()));
         updater.setCycleCount(Timeline.INDEFINITE);
         updater.play();
     }
