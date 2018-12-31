@@ -11,9 +11,6 @@ import javafx.util.Duration;
 import models.Algorithm;
 import models.Field;
 
-/**
- *
- */
 public class HistoryController extends ViewController {
     @FXML
     private VBox playgrounds;
@@ -44,9 +41,6 @@ public class HistoryController extends ViewController {
         updater.play();
     }
 
-    /**
-     *
-     */
     public void tick() {
         if(algorithm.getLoop().getStatus() == Animation.Status.RUNNING) {
             if (playgrounds.getChildren().size() >= 20) {
@@ -66,7 +60,7 @@ public class HistoryController extends ViewController {
 
     @Override
     public void destroy() {
-
+        // TODO: implement destroy
     }
 
     @Override
