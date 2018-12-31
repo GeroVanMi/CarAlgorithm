@@ -1,12 +1,11 @@
 package models;
 
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
 /**
- *
+ * Eine Modelklasse, die alle wichtigen Daten an einem Punkt zusammenbringt.
  */
 public class Algorithm {
     private Lane lane;
@@ -15,10 +14,10 @@ public class Algorithm {
     private Timeline loop;
 
     /**
-     * @param amountOfFields
-     * @param spawnChance
-     * @param fleaChance
-     * @param windowWidth
+     * @param amountOfFields Die Anzahl Felder, die existieren.
+     * @param spawnChance Die Prozentchance mit der ein neues Auto auf dem 0. Feld erstellt wird.
+     * @param fleaChance Die Prozentchance mit der ein Auto trödelt.
+     * @param windowWidth Länge des Fensters, in dem die Lane dargestellt wird. TODO: Aus dem Model entfernen.
      */
     public Algorithm(int amountOfFields, double spawnChance, double fleaChance, double windowWidth, double ticksPerSecond) {
         this.ticksPerSecond = ticksPerSecond;
@@ -27,13 +26,14 @@ public class Algorithm {
         this.createLoop();
     }
 
-    /**
-     *
-     */
     public void resetTotalTime() {
         this.totalTimeInTicks = 0;
     }
 
+    /**
+     * Erstellt die Timeline, die dafür sorgt, dass der Algorithmus regelmässig ausgeführt wird, solange diese noch
+     * nicht existiert.
+     */
     public void createLoop() {
         if(loop != null)
         {
@@ -60,16 +60,13 @@ public class Algorithm {
     }
 
     /**
-     *
+     *  Ruft einmal die Tickmethode der Lane auf.
      */
     public void tick() {
         lane.tick();
         totalTimeInTicks++;
     }
 
-    /**
-     * @return
-     */
     public Lane getLane() {
         return lane;
     }
