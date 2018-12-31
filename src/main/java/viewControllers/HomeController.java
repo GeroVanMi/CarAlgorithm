@@ -1,13 +1,14 @@
 package viewControllers;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import models.Algorithm;
 import models.Field;
 
@@ -25,8 +26,10 @@ public class HomeController extends ViewController {
     private HBox playground;
     @FXML
     private Slider tickSlider, fleaSlider, spawnSlider, amountOfFields;
+    //@FXML
+    //private CheckBox borderCheckBox;
     @FXML
-    private CheckBox borderCheckBox;
+    private Label amountOfCars, avgSpeed, ticksPassed;
 
     private NavigationController navigationController;
 
@@ -56,12 +59,22 @@ public class HomeController extends ViewController {
             this.amountOfFields.setValue(algorithm.getLane().getFields().size());
             this.tickSlider.setValue(algorithm.getTicksPerSecond());
             this.createPlayground();
+
+            // Statistics
+            this.algorithm = navigationController.getAlgorithm();
+            Timeline updater = new Timeline(new KeyFrame(Duration.millis(1000 / algorithm.getTicksPerSecond()), e -> {
+                amountOfCars.setText("" + algorithm.getLane().getCarsInLane().size());
+                avgSpeed.setText("" + Math.round(algorithm.getLane().calculateAvgSpeed() * 100) / 100);
+                ticksPassed.setText("" + algorithm.getTimeInTicks());
+            }));
+            updater.setCycleCount(Timeline.INDEFINITE);
+            updater.play();
         } catch (NullPointerException ex) {
             ex.printStackTrace();
         }
     }
 
-    @FXML
+    /*@FXML
     public void setBorders() {
         for(Node node : playground.getChildren()) {
             node.getStyleClass().clear();
@@ -71,7 +84,7 @@ public class HomeController extends ViewController {
                 node.getStyleClass().add("borderless");
             }
         }
-    }
+    }*/
 
     @Override
     public void destroy() {

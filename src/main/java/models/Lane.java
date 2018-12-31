@@ -129,9 +129,6 @@ public class Lane {
         carsInLane.removeAll(carsOutOfLane);
     }
 
-    /**
-     * @return
-     */
     public ArrayList<Field> getFields() {
         return fields;
     }

@@ -42,12 +42,6 @@ public class NavigationController {
     }
 
     @FXML
-    public void handleButtonStatistics(ActionEvent ae) {
-        loadContent("/views/statistics.fxml");
-        title.setText("Nagel-Schreckenberg-Modell Statistics");
-    }
-
-    @FXML
     public void handleButtonStop(ActionEvent ae) {
         algorithm.stopLoop();
         Lane currentLane = algorithm.getLane();
