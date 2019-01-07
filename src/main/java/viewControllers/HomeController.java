@@ -63,7 +63,8 @@ public class HomeController implements ViewController {
             this.algorithm = navigationController.getAlgorithm();
             Timeline updater = new Timeline(new KeyFrame(Duration.millis(1000 / algorithm.getTicksPerSecond()), e -> {
                 amountOfCars.setText("" + algorithm.getLane().getCarsInLane().size() + " cars");
-                avgSpeed.setText("" + Math.round(algorithm.getLane().calculateAvgSpeed() * 100) / 100 + " fields per tick");// TODO: Better representation
+                double roundedSpeed = Math.round(algorithm.getLane().calculateAvgSpeed() * 100);
+                avgSpeed.setText(""  + roundedSpeed / 100 + " fields per tick");
                 ticksPassed.setText("" + algorithm.getTimeInTicks() + " ticks");
             }));
             updater.setCycleCount(Timeline.INDEFINITE);
@@ -72,18 +73,6 @@ public class HomeController implements ViewController {
             ex.printStackTrace();
         }
     }
-
-    /*@FXML
-    public void setBorders() {
-        for(Node node : playground.getChildren()) {
-            node.getStyleClass().clear();
-            if(borderCheckBox.isSelected()) {
-                node.getStyleClass().add("border");
-            } else {
-                node.getStyleClass().add("borderless");
-            }
-        }
-    }*/
 
     @Override
     public void destroy() {

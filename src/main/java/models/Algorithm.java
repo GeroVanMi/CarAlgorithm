@@ -26,10 +26,6 @@ public class Algorithm {
         this.createLoop();
     }
 
-    public void resetTotalTime() {
-        this.totalTimeInTicks = 0;
-    }
-
     /**
      * Erstellt die Timeline, die dafür sorgt, dass der Algorithmus regelmässig ausgeführt wird, solange diese noch
      * nicht existiert.

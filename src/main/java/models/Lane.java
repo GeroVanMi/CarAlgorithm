@@ -93,8 +93,8 @@ public class Lane {
     /**
      * Berechnet die aktuelle Durchschnittsgeschwindigkeit.
      */
-    public float calculateAvgSpeed() {
-        float avgSpeed = 0;
+    public double calculateAvgSpeed() {
+        double avgSpeed = 0;
         for(Car c:carsInLane) {
             avgSpeed += c.getSpeed();
         }
