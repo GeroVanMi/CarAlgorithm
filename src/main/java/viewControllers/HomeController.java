@@ -23,12 +23,11 @@ public class HomeController implements ViewController {
     private HBox playground;
     @FXML
     private Slider tickSlider, fleaSlider, spawnSlider, amountOfFields;
-    //@FXML
-    //private CheckBox borderCheckBox;
     @FXML
     private Label amountOfCars, avgSpeed, ticksPassed;
 
     private NavigationController navigationController;
+    private Timeline updater;
 
     public void createPlayground() {
         for (Field field : algorithm.getLane().getFields()) {
@@ -61,7 +60,7 @@ public class HomeController implements ViewController {
 
             // Statistics
             this.algorithm = navigationController.getAlgorithm();
-            Timeline updater = new Timeline(new KeyFrame(Duration.millis(1000 / algorithm.getTicksPerSecond()), e -> {
+            updater = new Timeline(new KeyFrame(Duration.millis(1000 / algorithm.getTicksPerSecond()), e -> {
                 amountOfCars.setText("" + algorithm.getLane().getCarsInLane().size() + " cars");
                 double roundedSpeed = Math.round(algorithm.getLane().calculateAvgSpeed() * 100);
                 avgSpeed.setText(""  + roundedSpeed / 100 + " fields per tick");
@@ -76,7 +75,7 @@ public class HomeController implements ViewController {
 
     @Override
     public void destroy() {
-        // TODO: implement destroy()
+        updater.stop();
     }
 
     @FXML

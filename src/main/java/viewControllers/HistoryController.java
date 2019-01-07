@@ -16,6 +16,7 @@ public class HistoryController implements ViewController {
     private VBox playgrounds;
     private NavigationController navigationController;
     private Algorithm algorithm;
+    private Timeline updater;
 
     @Override
     public void setup(NavigationController navigationController) {
@@ -34,7 +35,7 @@ public class HistoryController implements ViewController {
             }
             playgrounds.getChildren().add(hBox);
         }
-        Timeline updater = new Timeline(new KeyFrame(Duration.millis(1000 / algorithm.getTicksPerSecond()), e -> this.tick()));
+        updater = new Timeline(new KeyFrame(Duration.millis(1000 / algorithm.getTicksPerSecond()), e -> this.tick()));
         updater.setCycleCount(Timeline.INDEFINITE);
         updater.play();
     }
@@ -58,7 +59,7 @@ public class HistoryController implements ViewController {
 
     @Override
     public void destroy() {
-        // TODO: implement destroy
+        updater.stop();
     }
 
     @Override
