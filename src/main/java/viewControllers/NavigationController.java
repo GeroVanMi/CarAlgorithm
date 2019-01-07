@@ -61,6 +61,10 @@ public class NavigationController {
         button.getStyleClass().clear();
         button.getStyleClass().add("pauseButton");
         algorithm.playLoop();
+        if(currentContentController instanceof HistoryController) {
+            HistoryController historyController = (HistoryController) currentContentController;
+            historyController.play();
+        }
     }
 
     @FXML
@@ -70,11 +74,19 @@ public class NavigationController {
         button.getStyleClass().clear();
         button.getStyleClass().add("playButton");
         algorithm.pauseLoop();
+        if(currentContentController instanceof HistoryController) {
+            HistoryController historyController = (HistoryController) currentContentController;
+            historyController.pause();
+        }
     }
 
     @FXML
     public void handleButtonForward(ActionEvent ae) {
         algorithm.tick();
+        if(currentContentController instanceof HistoryController) {
+            HistoryController historyController = (HistoryController) currentContentController;
+            historyController.forward();
+        }
     }
 
     public void loadContent(String path) {

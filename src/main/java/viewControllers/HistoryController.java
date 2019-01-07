@@ -41,25 +41,35 @@ public class HistoryController implements ViewController {
     }
 
     public void tick() {
-        if(algorithm.getLoop().getStatus() == Animation.Status.RUNNING) {
-            if (playgrounds.getChildren().size() >= 20) {
-                playgrounds.getChildren().remove(0);
-            }
-            HBox hBox = new HBox();
-            for (Field field : algorithm.getLane().getFields()) {
-                Label label = new Label();
-                label.setId(field.getColor());
-                label.setPrefSize(playgrounds.getWidth() / algorithm.getLane().getFields().size(), playgrounds.getHeight() / 20);
-                hBox.getChildren().add(label);
-            }
-            playgrounds.getChildren().add(hBox);
+        if (playgrounds.getChildren().size() >= 20) {
+            playgrounds.getChildren().remove(0);
         }
+        HBox hBox = new HBox();
+        for (Field field : algorithm.getLane().getFields()) {
+            Label label = new Label();
+            label.setId(field.getColor());
+            label.setPrefSize(playgrounds.getWidth() / algorithm.getLane().getFields().size(), playgrounds.getHeight() / 20);
+            hBox.getChildren().add(label);
+        }
+        playgrounds.getChildren().add(hBox);
     }
 
 
     @Override
     public void destroy() {
         updater.stop();
+    }
+
+    public void forward() {
+        this.tick();
+    }
+
+    public void pause() {
+        this.updater.pause();
+    }
+
+    public void play() {
+        this.updater.play();
     }
 
     @Override

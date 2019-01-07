@@ -54,7 +54,7 @@
     -fx-background-color: rgb(200, 125, 0);
 }
 
-.pauseButton {
+.pauseButton:hover {
     -fx-shape: "M715,200L840,200L840,600L715,600L715,200ZM440,600L440,200L565,200L565,600L440,600Z";
     -fx-background-color: rgb(200, 150, 0);
 }
