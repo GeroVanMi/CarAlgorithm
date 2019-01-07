@@ -67,16 +67,23 @@ public class Algorithm {
         totalTimeInTicks++;
     }
 
+    public void setTicksPerSecond(double ticksPerSecond) {
+        this.ticksPerSecond = ticksPerSecond;
+        loop.stop();
+        loop.getKeyFrames().remove(0);
+        loop.getKeyFrames().add(new KeyFrame(Duration.millis(1000 / ticksPerSecond), e-> {
+            this.tick();
+            totalTimeInTicks++;
+        }));
+        loop.play();
+    }
+
     public Lane getLane() {
         return lane;
     }
 
     public double getTicksPerSecond() {
         return ticksPerSecond;
-    }
-
-    public void setTicksPerSecond(double ticksPerSecond) {
-        this.ticksPerSecond = ticksPerSecond;
     }
 
     public int getTimeInTicks() {
